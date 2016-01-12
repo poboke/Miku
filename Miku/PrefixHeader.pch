@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  Miku
+//
+//  Created by Jobs on 16/1/11.
+//  Copyright © 2016年 Jobs. All rights reserved.
+//
+
+#ifndef Miku_PrefixHeader_pch
+#define Miku_PrefixHeader_pch
+
+#import <Cocoa/Cocoa.h>
+#import "JRSwizzle.h"
+
+#endif

@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C55955D51C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m in Sources */ = {isa = PBXBuildFile; fileRef = C55955D41C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m */; };
+		C561CA4B1C44E34E00401E7A /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C561CA4A1C44E34E00401E7A /* ConfigManager.m */; };
+		C5A7B8A61C43B4920055F0C4 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8A51C43B4920055F0C4 /* AppKit.framework */; };
+		C5A7B8A81C43B4920055F0C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8A71C43B4920055F0C4 /* Foundation.framework */; };
+		C5A7B8B01C43B4920055F0C4 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A7B8AF1C43B4920055F0C4 /* JRSwizzle.m */; };
+		C5A7B8B51C43B4920055F0C4 /* Miku.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A7B8B41C43B4920055F0C4 /* Miku.m */; };
+		C5A7B8C91C43B54E0055F0C4 /* IDESourceEditor in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8C81C43B54E0055F0C4 /* IDESourceEditor */; };
+		C5A7B8CB1C43B55E0055F0C4 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8CA1C43B55E0055F0C4 /* DVTKit.framework */; };
+		C5A7B8CD1C43B56A0055F0C4 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8CC1C43B56A0055F0C4 /* IDEKit.framework */; };
+		C5A7B8D01C43B9E80055F0C4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8CF1C43B9E80055F0C4 /* WebKit.framework */; };
+		C5DD02F51C44C2ED00233375 /* miku-dancing.coding.io in Resources */ = {isa = PBXBuildFile; fileRef = C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */; };
+		C5DD02F81C44C32A00233375 /* MikuDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02F71C44C32A00233375 /* MikuDragView.m */; };
+		C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02FA1C44C33900233375 /* MikuWebView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C55955D31C44C1CA007F9389 /* IDESourceCodeEditor+Miku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDESourceCodeEditor+Miku.h"; sourceTree = "<group>"; };
+		C55955D41C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDESourceCodeEditor+Miku.m"; sourceTree = "<group>"; };
+		C561CA491C44E34E00401E7A /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
+		C561CA4A1C44E34E00401E7A /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		C5A7B8A21C43B4920055F0C4 /* Miku.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Miku.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5A7B8A51C43B4920055F0C4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		C5A7B8A71C43B4920055F0C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		C5A7B8AB1C43B4920055F0C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5A7B8AE1C43B4920055F0C4 /* JRSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
+		C5A7B8AF1C43B4920055F0C4 /* JRSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
+		C5A7B8B11C43B4920055F0C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C5A7B8B31C43B4920055F0C4 /* Miku.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Miku.h; sourceTree = "<group>"; };
+		C5A7B8B41C43B4920055F0C4 /* Miku.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Miku.m; sourceTree = "<group>"; };
+		C5A7B8BF1C43B5030055F0C4 /* DVTLayoutView_ML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTLayoutView_ML.h; sourceTree = "<group>"; };
+		C5A7B8C01C43B5030055F0C4 /* DVTTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTTextStorage.h; sourceTree = "<group>"; };
+		C5A7B8C11C43B5030055F0C4 /* DVTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTViewController.h; sourceTree = "<group>"; };
+		C5A7B8C21C43B5030055F0C4 /* IDEEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEEditor.h; sourceTree = "<group>"; };
+		C5A7B8C31C43B5030055F0C4 /* IDESourceCodeDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceCodeDocument.h; sourceTree = "<group>"; };
+		C5A7B8C41C43B5030055F0C4 /* IDESourceCodeEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceCodeEditor.h; sourceTree = "<group>"; };
+		C5A7B8C51C43B5030055F0C4 /* IDESourceCodeEditorContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceCodeEditorContainerView.h; sourceTree = "<group>"; };
+		C5A7B8C61C43B5030055F0C4 /* IDEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEViewController.h; sourceTree = "<group>"; };
+		C5A7B8C81C43B54E0055F0C4 /* IDESourceEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDESourceEditor; path = /Applications/Xcode.app/Contents/PlugIns/IDESourceEditor.ideplugin/Contents/MacOS/IDESourceEditor; sourceTree = "<group>"; };
+		C5A7B8CA1C43B55E0055F0C4 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		C5A7B8CC1C43B56A0055F0C4 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		C5A7B8CF1C43B9E80055F0C4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "miku-dancing.coding.io"; sourceTree = "<group>"; };
+		C5DD02F61C44C32A00233375 /* MikuDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuDragView.h; sourceTree = "<group>"; };
+		C5DD02F71C44C32A00233375 /* MikuDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuDragView.m; sourceTree = "<group>"; };
+		C5DD02F91C44C33900233375 /* MikuWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuWebView.h; sourceTree = "<group>"; };
+		C5DD02FA1C44C33900233375 /* MikuWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuWebView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C5A7B89E1C43B4920055F0C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5A7B8D01C43B9E80055F0C4 /* WebKit.framework in Frameworks */,
+				C5A7B8A61C43B4920055F0C4 /* AppKit.framework in Frameworks */,
+				C5A7B8A81C43B4920055F0C4 /* Foundation.framework in Frameworks */,
+				C5A7B8CB1C43B55E0055F0C4 /* DVTKit.framework in Frameworks */,
+				C5A7B8C91C43B54E0055F0C4 /* IDESourceEditor in Frameworks */,
+				C5A7B8CD1C43B56A0055F0C4 /* IDEKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5A7B8A01C43B4920055F0C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C561CA481C44E34E00401E7A /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				C561CA491C44E34E00401E7A /* ConfigManager.h */,
+				C561CA4A1C44E34E00401E7A /* ConfigManager.m */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		C5A7B8981C43B4910055F0C4 = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8A91C43B4920055F0C4 /* Miku */,
+				C5A7B8A41C43B4920055F0C4 /* Frameworks */,
+				C5A7B8A31C43B4920055F0C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C5A7B8A31C43B4920055F0C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8A21C43B4920055F0C4 /* Miku.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C5A7B8A41C43B4920055F0C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8C81C43B54E0055F0C4 /* IDESourceEditor */,
+				C5A7B8CA1C43B55E0055F0C4 /* DVTKit.framework */,
+				C5A7B8CC1C43B56A0055F0C4 /* IDEKit.framework */,
+				C5A7B8CE1C43B57F0055F0C4 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5A7B8A91C43B4920055F0C4 /* Miku */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8B31C43B4920055F0C4 /* Miku.h */,
+				C5A7B8B41C43B4920055F0C4 /* Miku.m */,
+				C5DD02F31C44C2C500233375 /* Views */,
+				C561CA481C44E34E00401E7A /* Configs */,
+				C5A7B8BB1C43B5030055F0C4 /* HookClasses */,
+				C5A7B8BE1C43B5030055F0C4 /* XcodeHeaders */,
+				C5A7B8AD1C43B4920055F0C4 /* JRSwizzle */,
+				C5A7B8AA1C43B4920055F0C4 /* Supporting Files */,
+			);
+			path = Miku;
+			sourceTree = "<group>";
+		};
+		C5A7B8AA1C43B4920055F0C4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8AB1C43B4920055F0C4 /* Info.plist */,
+				C5A7B8B11C43B4920055F0C4 /* PrefixHeader.pch */,
+				C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5A7B8AD1C43B4920055F0C4 /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8AE1C43B4920055F0C4 /* JRSwizzle.h */,
+				C5A7B8AF1C43B4920055F0C4 /* JRSwizzle.m */,
+			);
+			name = JRSwizzle;
+			sourceTree = "<group>";
+		};
+		C5A7B8BB1C43B5030055F0C4 /* HookClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C55955D31C44C1CA007F9389 /* IDESourceCodeEditor+Miku.h */,
+				C55955D41C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m */,
+			);
+			path = HookClasses;
+			sourceTree = "<group>";
+		};
+		C5A7B8BE1C43B5030055F0C4 /* XcodeHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8BF1C43B5030055F0C4 /* DVTLayoutView_ML.h */,
+				C5A7B8C01C43B5030055F0C4 /* DVTTextStorage.h */,
+				C5A7B8C11C43B5030055F0C4 /* DVTViewController.h */,
+				C5A7B8C21C43B5030055F0C4 /* IDEEditor.h */,
+				C5A7B8C31C43B5030055F0C4 /* IDESourceCodeDocument.h */,
+				C5A7B8C41C43B5030055F0C4 /* IDESourceCodeEditor.h */,
+				C5A7B8C51C43B5030055F0C4 /* IDESourceCodeEditorContainerView.h */,
+				C5A7B8C61C43B5030055F0C4 /* IDEViewController.h */,
+			);
+			path = XcodeHeaders;
+			sourceTree = "<group>";
+		};
+		C5A7B8CE1C43B57F0055F0C4 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5A7B8CF1C43B9E80055F0C4 /* WebKit.framework */,
+				C5A7B8A51C43B4920055F0C4 /* AppKit.framework */,
+				C5A7B8A71C43B4920055F0C4 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C5DD02F31C44C2C500233375 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5DD02F61C44C32A00233375 /* MikuDragView.h */,
+				C5DD02F71C44C32A00233375 /* MikuDragView.m */,
+				C5DD02F91C44C33900233375 /* MikuWebView.h */,
+				C5DD02FA1C44C33900233375 /* MikuWebView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C5A7B8A11C43B4920055F0C4 /* Miku */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5A7B8B81C43B4920055F0C4 /* Build configuration list for PBXNativeTarget "Miku" */;
+			buildPhases = (
+				C5A7B89D1C43B4920055F0C4 /* Sources */,
+				C5A7B89E1C43B4920055F0C4 /* Frameworks */,
+				C5A7B89F1C43B4920055F0C4 /* Resources */,
+				C5A7B8A01C43B4920055F0C4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Miku;
+			productName = Miku;
+			productReference = C5A7B8A21C43B4920055F0C4 /* Miku.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C5A7B8991C43B4910055F0C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Jobs;
+				TargetAttributes = {
+					C5A7B8A11C43B4920055F0C4 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = C5A7B89C1C43B4910055F0C4 /* Build configuration list for PBXProject "Miku" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C5A7B8981C43B4910055F0C4;
+			productRefGroup = C5A7B8A31C43B4920055F0C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C5A7B8A11C43B4920055F0C4 /* Miku */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5A7B89F1C43B4920055F0C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5DD02F51C44C2ED00233375 /* miku-dancing.coding.io in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C5A7B89D1C43B4920055F0C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5DD02F81C44C32A00233375 /* MikuDragView.m in Sources */,
+				C5A7B8B01C43B4920055F0C4 /* JRSwizzle.m in Sources */,
+				C5A7B8B51C43B4920055F0C4 /* Miku.m in Sources */,
+				C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */,
+				C55955D51C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m in Sources */,
+				C561CA4B1C44E34E00401E7A /* ConfigManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C5A7B8B61C43B4920055F0C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		C5A7B8B71C43B4920055F0C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		C5A7B8B91C43B4920055F0C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
+					"$(DEVELOPER_DIR)/../OtherFrameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Miku/PrefixHeader.pch;
+				INFOPLIST_FILE = Miku/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACH_O_TYPE = mh_bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poboke.Miku;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		C5A7B8BA1C43B4920055F0C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
+					"$(DEVELOPER_DIR)/../OtherFrameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Miku/PrefixHeader.pch;
+				INFOPLIST_FILE = Miku/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACH_O_TYPE = mh_bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poboke.Miku;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C5A7B89C1C43B4910055F0C4 /* Build configuration list for PBXProject "Miku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5A7B8B61C43B4920055F0C4 /* Debug */,
+				C5A7B8B71C43B4920055F0C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5A7B8B81C43B4920055F0C4 /* Build configuration list for PBXNativeTarget "Miku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5A7B8B91C43B4920055F0C4 /* Debug */,
+				C5A7B8BA1C43B4920055F0C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C5A7B8991C43B4910055F0C4 /* Project object */;
+}
