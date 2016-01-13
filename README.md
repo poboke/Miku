@@ -2,7 +2,7 @@
 # Miku
   Miku is a plugin for Xcode. A copy of atom-miku.
 
-  说明：这是一个在Xcode里召唤*程序员鼓励师*的插件，[atom-miku](https://github.com/sunqibuhuake/atom-miku)的盗版。
+  说明：这是一个在Xcode里召唤**程序员鼓励师**的插件，[atom-miku](https://github.com/sunqibuhuake/atom-miku)的盗版。
 
   ![image](https://github.com/poboke/Miku/raw/master/Screenshots/about.png)
 

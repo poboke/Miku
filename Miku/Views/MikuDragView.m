@@ -25,18 +25,7 @@
         
         // 使用WebView导通器连接异次元
         self.mikuWebView = [[MikuWebView alloc] initWithFrame:self.bounds];
-        self.mikuWebView.drawsBackground = NO;
         [self addSubview:self.mikuWebView];
-        
-        // 连接本地的异次元空间，因为加载远程的异次元空间速度太慢
-        NSString *pluginPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Miku.xcplugin";
-        NSBundle *pluginBundle = [NSBundle bundleWithPath:[pluginPath stringByExpandingTildeInPath]];
-        NSString *htmlPath = [pluginBundle pathForResource:@"index"
-                                                    ofType:@"html"
-                                               inDirectory:@"miku-dancing.coding.io"];
-        NSURL *htmlUrl = [NSURL fileURLWithPath:htmlPath];
-        NSURLRequest *request = [NSURLRequest requestWithURL:htmlUrl];
-        [[self.mikuWebView mainFrame] loadRequest:request];
     }
     
     return self;

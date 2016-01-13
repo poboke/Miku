@@ -10,6 +10,27 @@
 
 @implementation MikuWebView
 
+- (instancetype)initWithFrame:(NSRect)frameRect
+{
+    if (self = [super initWithFrame:frameRect]) {
+        
+        self.drawsBackground = NO;
+        
+        // 连接本地的异次元空间，因为加载远程的异次元空间速度太慢
+        NSString *pluginPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Miku.xcplugin";
+        NSBundle *pluginBundle = [NSBundle bundleWithPath:[pluginPath stringByExpandingTildeInPath]];
+        NSString *htmlPath = [pluginBundle pathForResource:@"index"
+                                                    ofType:@"html"
+                                               inDirectory:@"miku-dancing.coding.io"];
+        NSURL *htmlUrl = [NSURL fileURLWithPath:htmlPath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:htmlUrl];
+        [self.mainFrame loadRequest:request];
+    }
+    
+    return self;
+}
+
+
 - (NSView *)hitTest:(NSPoint)aPoint
 {
     // http://stackoverflow.com/questions/9073975/cocoa-webview-ignore-mouse-events-in-areas-without-content
@@ -30,9 +51,9 @@
 }
 
 
-- (void)addFrame:(NSInteger)frame
+- (void)addPlayingTime:(NSInteger)seconds
 {
-    NSString *script = [NSString stringWithFormat:@"control.addFrame(%li)", frame];
+    NSString *script = [NSString stringWithFormat:@"control.addFrame(%li)", seconds];
     [self stringByEvaluatingJavaScriptFromString:script];
 }
 

@@ -14,6 +14,6 @@
 
 - (void)play;
 - (void)pause;
-- (void)addFrame:(NSInteger)frame;
+- (void)addPlayingTime:(NSInteger)seconds;
 
 @end

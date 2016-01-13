@@ -38,7 +38,7 @@
 {
     // 给Miku充能量
     MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
-    [mikuWebView addFrame:8];
+    [mikuWebView addPlayingTime:10];
     
     return [self miku_textView:textView shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
