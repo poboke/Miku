@@ -14,6 +14,7 @@
 
 - (void)play;
 - (void)pause;
+- (void)mute:(BOOL)flag;
 - (void)addPlayingTime:(NSInteger)seconds;
 
 @end

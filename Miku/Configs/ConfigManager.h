@@ -11,6 +11,7 @@
 @interface ConfigManager : NSObject
 
 @property (nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
+@property (nonatomic, assign, getter=isEnableMusic) BOOL enableMusic;
 
 + (instancetype)sharedManager;
 

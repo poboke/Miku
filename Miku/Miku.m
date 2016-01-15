@@ -84,8 +84,18 @@
     subMenuItem.title = @"Enable Miku";
     subMenuItem.target = self;
     subMenuItem.action = @selector(toggleMenu:);
+    subMenuItem.tag = MenuPluginItem;
     subMenuItem.state = [ConfigManager sharedManager].isEnablePlugin;
     [pluginsMenuItem.submenu addItem:subMenuItem];
+    
+    // Add Subitem
+    NSMenuItem *musicMenuItem = [[NSMenuItem alloc] init];
+    musicMenuItem.title = @"Enable Music";
+    musicMenuItem.target = self;
+    musicMenuItem.tag = MenuMusicItem;
+    musicMenuItem.action = @selector(toggleMenu:);
+    musicMenuItem.state = [ConfigManager sharedManager].isEnableMusic;
+    [pluginsMenuItem.submenu addItem:musicMenuItem];
 }
 
 
@@ -93,9 +103,19 @@
 {
     menuItem.state = !menuItem.state;
     
-    [self switchEnablePlugin];
-    
-    [ConfigManager sharedManager].enablePlugin = ![ConfigManager sharedManager].isEnablePlugin;
+    if (menuItem.tag == MenuPluginItem) {
+        
+        self.mikuDragView.hidden = !self.mikuDragView.isHidden;
+        
+        [ConfigManager sharedManager].enablePlugin = ![ConfigManager sharedManager].isEnablePlugin;
+        
+    } else {
+        
+        self.mikuDragView.mute = !menuItem.state;
+        
+        [ConfigManager sharedManager].enableMusic = ![ConfigManager sharedManager].isEnableMusic;
+        
+    }
 }
 
 
@@ -103,6 +123,7 @@
 {
     [IDESourceCodeEditor hookMiku];
     self.mikuDragView.hidden = !self.mikuDragView.isHidden;
+    self.mikuDragView.mute = ![ConfigManager sharedManager].isEnableMusic;
 }
 
 

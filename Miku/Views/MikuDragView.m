@@ -16,6 +16,7 @@
 
 
 @implementation MikuDragView
+@synthesize mute = _mute;
 
 - (instancetype)init
 {
@@ -25,6 +26,7 @@
         
         // 使用WebView导通器连接异次元
         self.mikuWebView = [[MikuWebView alloc] initWithFrame:self.bounds];
+        self.mikuWebView.frameLoadDelegate = self;
         [self addSubview:self.mikuWebView];
     }
     
@@ -66,10 +68,19 @@
     }
 }
 
+- (void)setMute:(BOOL)mute
+{
+    _mute = mute;
+    [self.mikuWebView mute:mute];
+}
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
 }
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    [self.mikuWebView mute:self.mute];
+}
 @end

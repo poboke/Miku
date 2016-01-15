@@ -11,6 +11,11 @@
 
 @interface Miku : NSObject
 
+typedef NS_ENUM(NSInteger, MENUITEMS) {
+    MenuPluginItem,
+    MenuMusicItem,
+};
+
 @property (nonatomic, strong) MikuDragView *mikuDragView;
 
 + (instancetype)sharedPlugin;
