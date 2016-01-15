@@ -11,6 +11,7 @@
 
 @interface Miku : NSObject
 
+@property (nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
 @property (nonatomic, strong) MikuDragView *mikuDragView;
 
 + (instancetype)sharedPlugin;

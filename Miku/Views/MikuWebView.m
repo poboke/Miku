@@ -39,22 +39,71 @@
 }
 
 
+/**
+ *  播放
+ */
 - (void)play
 {
     [self stringByEvaluatingJavaScriptFromString:@"control.play()"];
 }
 
 
+/**
+ *  暂停
+ */
 - (void)pause
 {
     [self stringByEvaluatingJavaScriptFromString:@"control.pause()"];
 }
 
 
-- (void)addPlayingTime:(NSInteger)seconds
+/**
+ *  设置播放时间
+ *
+ *  @param seconds 秒数
+ */
+- (void)setPlayingTime:(NSInteger)seconds
 {
     NSString *script = [NSString stringWithFormat:@"control.addFrame(%li)", seconds];
     [self stringByEvaluatingJavaScriptFromString:script];
+}
+
+
+/**
+ *  设置是否一直跳舞，是的话就不会出现慢动作
+ *
+ *  @param isKeepDancing 是否一直跳舞
+ */
+- (void)setIsKeepDancing:(BOOL)isKeepDancing
+{
+    NSString *script = [NSString stringWithFormat:@"control.dance(%i)", isKeepDancing];
+    [self stringByEvaluatingJavaScriptFromString:script];
+}
+
+
+/**
+ *  设置音乐类型
+ *
+ *  @param musicType 音乐类型
+ */
+- (void)setMusicType:(MikuMusicType)musicType
+{
+    switch (musicType) {
+            
+        case MikuMusicTypeDefault:
+            [self stringByEvaluatingJavaScriptFromString:@"control.mute(false)"];
+            [self stringByEvaluatingJavaScriptFromString:@"control.music(false)"];
+            break;
+            
+        case MikuMusicTypeNormal:
+            [self stringByEvaluatingJavaScriptFromString:@"control.mute(false)"];
+            [self stringByEvaluatingJavaScriptFromString:@"control.music(true)"];
+            break;
+            
+        case MikuMusicTypeMute:
+            [self stringByEvaluatingJavaScriptFromString:@"control.mute(true)"];
+            break;
+    }
 }
 
 

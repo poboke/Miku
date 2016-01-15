@@ -8,6 +8,7 @@
 
 #import "Miku.h"
 #import "ConfigManager.h"
+#import "MainMenuItem.h"
 #import "IDESourceCodeEditor+Miku.h"
 
 @interface Miku()
@@ -61,7 +62,7 @@
     [self addPluginsMenu];
     
     if ([ConfigManager sharedManager].isEnablePlugin) {
-        [self switchEnablePlugin];
+        self.enablePlugin = YES;
     }
 }
 
@@ -80,29 +81,18 @@
     }
     
     // Add Subitem
-    NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
-    subMenuItem.title = @"Enable Miku";
-    subMenuItem.target = self;
-    subMenuItem.action = @selector(toggleMenu:);
-    subMenuItem.state = [ConfigManager sharedManager].isEnablePlugin;
-    [pluginsMenuItem.submenu addItem:subMenuItem];
+    MainMenuItem *mainMenuItem = [[MainMenuItem alloc] init];
+    [pluginsMenuItem.submenu addItem:mainMenuItem];
 }
 
 
-- (void)toggleMenu:(NSMenuItem *)menuItem
+- (void)setEnablePlugin:(BOOL)enablePlugin
 {
-    menuItem.state = !menuItem.state;
+    _enablePlugin = enablePlugin;
     
-    [self switchEnablePlugin];
-    
-    [ConfigManager sharedManager].enablePlugin = ![ConfigManager sharedManager].isEnablePlugin;
-}
-
-
-- (void)switchEnablePlugin
-{
     [IDESourceCodeEditor hookMiku];
-    self.mikuDragView.hidden = !self.mikuDragView.isHidden;
+    
+    self.mikuDragView.hidden = !enablePlugin;
 }
 
 

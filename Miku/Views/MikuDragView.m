@@ -7,8 +7,9 @@
 //
 
 #import "MikuDragView.h"
+#import "ConfigManager.h"
 
-@interface MikuDragView()
+@interface MikuDragView() <WebFrameLoadDelegate>
 
 @property (nonatomic, assign) NSPoint lastDragLocation;
 
@@ -25,6 +26,7 @@
         
         // 使用WebView导通器连接异次元
         self.mikuWebView = [[MikuWebView alloc] initWithFrame:self.bounds];
+        self.mikuWebView.frameLoadDelegate = self;
         [self addSubview:self.mikuWebView];
     }
     
@@ -41,9 +43,13 @@
 }
 
 
+/**
+ *  添加负离子防御罩，启用时空拖拽
+ *
+ *  @param theEvent
+ */
 - (void)mouseDragged:(NSEvent *)theEvent
 {
-    // 添加负离子防御罩，启用时空拖拽
     // We're working only in the superview's coordinate space, so we always convert.
     NSPoint newDragLocation = [self.superview convertPoint:[theEvent locationInWindow] fromView:nil];
     NSPoint thisOrigin = self.frame.origin;
@@ -55,6 +61,11 @@
 }
 
 
+/**
+ *  设置是否隐藏，隐藏时停止动作，显示时继续动作
+ *
+ *  @param hidden 是否隐藏
+ */
 - (void)setHidden:(BOOL)hidden
 {
     [super setHidden:hidden];
@@ -64,6 +75,21 @@
     } else {
         [self.mikuWebView play];
     }
+}
+
+
+/**
+ *  异次元空间加载完毕的代码
+ *
+ *  @param sender
+ *  @param frame
+ */
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    //等待异次元空间加载完毕，设置用户选择的属性
+    ConfigManager *configManager = [ConfigManager sharedManager];
+    [self.mikuWebView setMusicType:configManager.musicType];
+    [self.mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
 }
 
 

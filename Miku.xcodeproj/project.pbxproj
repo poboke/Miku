@@ -20,6 +20,7 @@
 		C5DD02F51C44C2ED00233375 /* miku-dancing.coding.io in Resources */ = {isa = PBXBuildFile; fileRef = C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */; };
 		C5DD02F81C44C32A00233375 /* MikuDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02F71C44C32A00233375 /* MikuDragView.m */; };
 		C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02FA1C44C33900233375 /* MikuWebView.m */; };
+		C5E448F61C48C9B1003FC1B0 /* MainMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		C5DD02F71C44C32A00233375 /* MikuDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuDragView.m; sourceTree = "<group>"; };
 		C5DD02F91C44C33900233375 /* MikuWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuWebView.h; sourceTree = "<group>"; };
 		C5DD02FA1C44C33900233375 /* MikuWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuWebView.m; sourceTree = "<group>"; };
+		C5E448F41C48C9B1003FC1B0 /* MainMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuItem.h; sourceTree = "<group>"; };
+		C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 			children = (
 				C561CA491C44E34E00401E7A /* ConfigManager.h */,
 				C561CA4A1C44E34E00401E7A /* ConfigManager.m */,
+				C5E448F41C48C9B1003FC1B0 /* MainMenuItem.h */,
+				C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */,
 				C55955D51C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m in Sources */,
 				C561CA4B1C44E34E00401E7A /* ConfigManager.m in Sources */,
+				C5E448F61C48C9B1003FC1B0 /* MainMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

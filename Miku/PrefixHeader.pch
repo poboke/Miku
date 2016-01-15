@@ -12,4 +12,6 @@
 #import <Cocoa/Cocoa.h>
 #import "JRSwizzle.h"
 
+#define PluginVersion ([[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleShortVersionString"])
+
 #endif

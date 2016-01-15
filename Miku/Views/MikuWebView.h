@@ -8,12 +8,21 @@
 
 #import <WebKit/WebKit.h>
 
+//音乐类型
+typedef NS_ENUM(NSUInteger, MikuMusicType) {
+    MikuMusicTypeDefault,   //默认模式，慢动作时音乐播放会变慢
+    MikuMusicTypeNormal,    //正常模式，慢动作时音乐播放不变慢
+    MikuMusicTypeMute,      //静音模式
+};
+
 @interface MikuWebView : WebView
 
 @property (nonatomic, assign) NSInteger webViewTag;
 
 - (void)play;
 - (void)pause;
-- (void)addPlayingTime:(NSInteger)seconds;
+- (void)setPlayingTime:(NSInteger)seconds;
+- (void)setIsKeepDancing:(BOOL)isKeepDancing;
+- (void)setMusicType:(MikuMusicType)musicType;
 
 @end

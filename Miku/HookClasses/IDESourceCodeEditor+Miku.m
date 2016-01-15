@@ -9,7 +9,6 @@
 #import "IDESourceCodeEditor+Miku.h"
 #import "Miku.h"
 
-
 @implementation IDESourceCodeEditor (Miku)
 
 + (void)hookMiku
@@ -38,7 +37,7 @@
 {
     // 给Miku充能量
     MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
-    [mikuWebView addPlayingTime:10];
+    [mikuWebView setPlayingTime:10];
     
     return [self miku_textView:textView shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }

@@ -9,10 +9,14 @@
 #import "ConfigManager.h"
 
 static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyEnablePlugin";
+static NSString * const MikuPluginConfigKeyEnableKeepDancing = @"MikuPluginConfigKeyEnableKeepDancing";
+static NSString * const MikuPluginConfigKeyMusicType = @"MikuPluginConfigKeyMusicType";
 
 @implementation ConfigManager
 
 @synthesize enablePlugin = _enablePlugin;
+@synthesize enableKeepDancing = _enableKeepDancing;
+@synthesize musicType = _musicType;
 
 + (instancetype)sharedManager
 {
@@ -53,6 +57,8 @@ static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyE
         if (!value) {
             // First time runing
             self.enablePlugin = YES;
+            self.enableKeepDancing = NO;
+            self.musicType = 0;
             _enablePlugin = YES;
         } else {
             _enablePlugin = [value boolValue];
@@ -67,6 +73,42 @@ static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyE
 {
     _enablePlugin = enablePlugin;
     [self setBoolValue:enablePlugin forKey:MikuPluginConfigKeyEnablePlugin];
+}
+
+
+- (BOOL)isEnableKeepDancing
+{
+    if (!_enableKeepDancing) {
+        _enableKeepDancing = [self boolValueForKey:MikuPluginConfigKeyEnableKeepDancing];
+    }
+    
+    return _enableKeepDancing;
+}
+
+
+- (void)setEnableKeepDancing:(BOOL)enableKeepDancing
+{
+    _enableKeepDancing = enableKeepDancing;
+    [self setBoolValue:enableKeepDancing forKey:MikuPluginConfigKeyEnableKeepDancing];
+}
+
+
+- (NSInteger)musicType
+{
+    if (!_musicType) {
+        NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:MikuPluginConfigKeyMusicType];
+        _musicType = [value integerValue];
+    }
+    
+    return _musicType;
+}
+
+
+- (void)setMusicType:(NSInteger)musicType
+{
+    _musicType = musicType;
+    [[NSUserDefaults standardUserDefaults] setObject:@(musicType) forKey:MikuPluginConfigKeyMusicType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
