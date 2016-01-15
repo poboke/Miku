@@ -9,10 +9,12 @@
 #import "ConfigManager.h"
 
 static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyEnablePlugin";
+static NSString * const MikuPluginConfigMusicEnablePlugin = @"MikuPluginConfigMusicEnablePlugin";
 
 @implementation ConfigManager
 
 @synthesize enablePlugin = _enablePlugin;
+@synthesize enableMusic = _enableMusic;
 
 + (instancetype)sharedManager
 {
@@ -53,7 +55,6 @@ static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyE
         if (!value) {
             // First time runing
             self.enablePlugin = YES;
-            _enablePlugin = YES;
         } else {
             _enablePlugin = [value boolValue];
         }
@@ -67,6 +68,30 @@ static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyE
 {
     _enablePlugin = enablePlugin;
     [self setBoolValue:enablePlugin forKey:MikuPluginConfigKeyEnablePlugin];
+}
+
+- (BOOL)isEnableMusic
+{
+    if (!_enableMusic) {
+        
+        NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:MikuPluginConfigMusicEnablePlugin];
+        
+        if (!value) {
+            // First time runing
+            self.enableMusic = YES;
+        } else {
+            _enablePlugin = [value boolValue];
+        }
+    }
+    
+    return _enablePlugin;
+}
+
+
+- (void)setEnableMusic:(BOOL)enableMusic
+{
+    _enableMusic = enableMusic;
+    [self setBoolValue:enableMusic forKey:MikuPluginConfigMusicEnablePlugin];
 }
 
 @end

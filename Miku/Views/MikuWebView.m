@@ -50,6 +50,14 @@
     [self stringByEvaluatingJavaScriptFromString:@"control.pause()"];
 }
 
+- (void)mute:(BOOL)flag;
+{
+    if (flag) {
+        [self stringByEvaluatingJavaScriptFromString:@"control.mute(true)"];
+    } else {
+        [self stringByEvaluatingJavaScriptFromString:@"control.mute(false)"];
+    }
+}
 
 - (void)addPlayingTime:(NSInteger)seconds
 {

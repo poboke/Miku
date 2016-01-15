@@ -9,8 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "MikuWebView.h"
 
-@interface MikuDragView : NSView
+@interface MikuDragView : NSView<WebFrameLoadDelegate>
 
 @property (nonatomic, strong) MikuWebView *mikuWebView;
+
+@property (nonatomic, assign) BOOL mute;
 
 @end
