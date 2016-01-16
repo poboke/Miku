@@ -12,7 +12,7 @@
 
   Click the `Plugins` menu, choose the `Miku` sub menu.
 
-  点击Xcode的`Plugins`，在`Miku`子菜单里可以选择一些选项。
+  点击Xcode的`Plugins`菜单，在`Miku`子菜单里可以选择一些选项。
 
   ![image](https://github.com/poboke/Miku/raw/master/Screenshots/menu.jpg)
 
@@ -23,11 +23,23 @@
     * `Normal ` : 正常模式，跳舞慢动作时音乐播放不变慢
     * `Mute   ` : 静音模式
 
-## Support Xcode Versions
+## Custom music play list
+
+  1. Copy the `MikuConfig` directory to `~/MikuConfig`.
+  2. Put some musics in the `~/MikuConfig` directory.
+  3. Edit the `~/MikuConfig/MikuConfig.plist` file, add music names to the `MusicNames` array.
+
+  1. 把`MikuConfig`文件夹拷贝到用户目录下，路径为`~/MikuConfig`。
+  2. 把喜欢的音乐文件放在`~/MikuConfig`里。
+  3. 编辑`~/MikuConfig/MikuConfig.plist`文件，把音乐名加到`MusicNames`数组里。
+
+  ![image](https://github.com/poboke/Miku/raw/master/Screenshots/playlist.jpg)
+
+## Support Xcode versions
   - Xcode6
   - Xcode7
 
-## Auto Install
+## Auto install and uninstall
   Using [Alcatraz](https://github.com/alcatraz/Alcatraz)
 
 ## Manual build and install

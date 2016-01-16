@@ -11,6 +11,10 @@ var music = false;
 var dance = false;
 var container;
 
+var playIndex = 0;
+var playList = ['./resources/bgm.mp3'];
+audio.src = playList[playIndex];
+
 var mesh, camera, scene, renderer;
 
 var directionalLight;
@@ -68,7 +72,14 @@ function init() {
         //加载完后赠送10秒播放时间
         dancingTime = 10;
         audio.play();
-        audio.loop = true;
+        //audio.loop = true;
+        audio.onended = function(){
+            playIndex = (playIndex + 1) % playList.length;
+            audio.src = playList[playIndex];
+            audio.onloadeddata = function(){
+                audio.play();
+            }
+        }
 
         mesh = object;
 
@@ -191,7 +202,15 @@ Control.prototype = {
     },
     dance: function(flag){
         dance = flag;
-
+    },
+    setPlayList: function(list){
+        if (list.length == 0) {
+            return;
+        }
+        playIndex = 0;
+        playList = list;
+        audio.src = playList[playIndex];
+        audio.play()
     }
 
 }

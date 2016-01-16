@@ -90,6 +90,46 @@
     ConfigManager *configManager = [ConfigManager sharedManager];
     [self.mikuWebView setMusicType:configManager.musicType];
     [self.mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
+    [self setCustomPlayList];
+}
+
+
+/**
+ *  设置用户自定义的播放列表
+ */
+- (void)setCustomPlayList
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
+    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
+        return;
+    }
+    
+    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
+    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
+        return;
+    }
+    
+    NSMutableArray *musicPaths = [NSMutableArray array];
+    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+    NSArray *musicNames = mikuConfig[@"MusicNames"];
+    
+    for (NSString *musicName in musicNames) {
+        NSString *musicPath = [NSString stringWithFormat:@"%@/%@", mikuConfigPath, musicName];
+        if ([fileManager fileExistsAtPath:musicPath]) {
+            musicPath = [NSString stringWithFormat:@"\"%@\"", musicPath];
+            [musicPaths addObject:musicPath];
+        }
+    }
+    
+    if (musicPaths.count == 0) {
+        return;
+    }
+    
+    NSString *songs = [musicPaths componentsJoinedByString:@","];
+    NSString *script = [NSString stringWithFormat:@"control.setPlayList([%@])", songs];
+    [self.mikuWebView stringByEvaluatingJavaScriptFromString:script];
 }
 
 
