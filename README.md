@@ -29,6 +29,8 @@
   2. Put some musics in the `~/MikuConfig` directory.
   3. Edit the `~/MikuConfig/MikuConfig.plist` file, add music names to the `MusicNames` array.
 
+自定义音乐播放列表
+
   1. 把`MikuConfig`文件夹拷贝到用户目录下，路径为`~/MikuConfig`。
   2. 把喜欢的音乐文件放在`~/MikuConfig`里。
   3. 编辑`~/MikuConfig/MikuConfig.plist`文件，把音乐名加到`MusicNames`数组里。
