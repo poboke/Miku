@@ -17,8 +17,6 @@ typedef NS_ENUM(NSUInteger, MikuMusicType) {
 
 @interface MikuWebView : WebView
 
-@property (nonatomic, assign) NSInteger webViewTag;
-
 - (void)play;
 - (void)pause;
 - (void)setPlayingTime:(NSInteger)seconds;

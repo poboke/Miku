@@ -8,6 +8,10 @@
 
 #import "MikuWebView.h"
 
+@interface MikuWebView () <NSDraggingDestination>
+@end
+
+
 @implementation MikuWebView
 
 - (instancetype)initWithFrame:(NSRect)frameRect
@@ -38,6 +42,8 @@
     return (NSView *)[self nextResponder];
 }
 
+
+#pragma mark - Controls
 
 /**
  *  播放
@@ -107,9 +113,31 @@
 }
 
 
-- (void)drawRect:(NSRect)dirtyRect
+#pragma mark - Drag music onto miku
+
+- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender
 {
-    [super drawRect:dirtyRect];
+    NSPasteboard *pasteboard = [sender draggingPasteboard];
+    
+    if ([pasteboard.types containsObject:NSFilenamesPboardType]) {
+        return NSDragOperationCopy;
+    }
+    
+    return NSDragOperationNone;
+}
+
+
+- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender
+{
+    NSPasteboard *pasteboard = [sender draggingPasteboard];
+
+    NSArray *list = [pasteboard propertyListForType:NSFilenamesPboardType];
+    NSString *fileURL = list.firstObject;
+
+    NSString *script = [NSString stringWithFormat:@"control.setPlayList(['%@'])", fileURL];
+    [self stringByEvaluatingJavaScriptFromString:script];
+    
+    return NO;
 }
 
 @end
