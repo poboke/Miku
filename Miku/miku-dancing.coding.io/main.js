@@ -12,7 +12,7 @@ var dance = false;
 var container;
 
 var playIndex = 0;
-var playList = ['./resources/bgm.mp3'];
+var playList = [];
 audio.src = playList[playIndex];
 
 var mesh, camera, scene, renderer;
