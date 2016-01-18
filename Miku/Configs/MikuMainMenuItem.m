@@ -1,13 +1,13 @@
 //
-//  MainMenuItem.m
+//  MikuMainMenuItem.m
 //  ActivatePowerMode
 //
 //  Created by Jobs on 16/1/15.
 //  Copyright © 2015年 Jobs. All rights reserved.
 //
 
-#import "MainMenuItem.h"
-#import "ConfigManager.h"
+#import "MikuMainMenuItem.h"
+#import "MikuConfigManager.h"
 #import "MikuWebView.h"
 #import "Miku.h"
 
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
 };
 
 
-@interface MainMenuItem ()
+@interface MikuMainMenuItem ()
 
 @property (nonatomic, strong) NSMenuItem *keepDancingMenuItem;
 
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
 @end
 
 
-@implementation MainMenuItem
+@implementation MikuMainMenuItem
 
 - (instancetype)init
 {
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
         configMenu.autoenablesItems = NSOffState;
         self.submenu = configMenu;
         
-        ConfigManager *configManager = [ConfigManager sharedManager];
+        MikuConfigManager *configManager = [MikuConfigManager sharedManager];
         
         NSMenuItem *pluginMenuItem = [self menuItemWithTitle:@"Enable" type:kMenuItemTypeEnablePlugin];
         pluginMenuItem.state = configManager.isEnablePlugin;
@@ -104,7 +104,7 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
 {
     menuItem.state = !menuItem.state;
     
-    ConfigManager *configManager = [ConfigManager sharedManager];
+    MikuConfigManager *configManager = [MikuConfigManager sharedManager];
     MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
     
     MenuItemType type = menuItem.tag;

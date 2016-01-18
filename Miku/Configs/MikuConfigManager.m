@@ -1,18 +1,18 @@
 //
-//  ConfigManager.m
+//  MikuConfigManager.m
 //  ActivatePowerMode
 //
 //  Created by Jobs on 16/1/11.
 //  Copyright © 2015年 Jobs. All rights reserved.
 //
 
-#import "ConfigManager.h"
+#import "MikuConfigManager.h"
 
 static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyEnablePlugin";
 static NSString * const MikuPluginConfigKeyEnableKeepDancing = @"MikuPluginConfigKeyEnableKeepDancing";
 static NSString * const MikuPluginConfigKeyMusicType = @"MikuPluginConfigKeyMusicType";
 
-@implementation ConfigManager
+@implementation MikuConfigManager
 
 @synthesize enablePlugin = _enablePlugin;
 @synthesize enableKeepDancing = _enableKeepDancing;
@@ -20,7 +20,7 @@ static NSString * const MikuPluginConfigKeyMusicType = @"MikuPluginConfigKeyMusi
 
 + (instancetype)sharedManager
 {
-    static ConfigManager *_sharedManager;
+    static MikuConfigManager *_sharedManager;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

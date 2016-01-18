@@ -1,5 +1,5 @@
 //
-//  ConfigManager.h
+//  MikuConfigManager.h
 //  ActivatePowerMode
 //
 //  Created by Jobs on 16/1/11.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConfigManager : NSObject
+@interface MikuConfigManager : NSObject
 
 @property (nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
 @property (nonatomic, assign, getter=isEnableKeepDancing) BOOL enableKeepDancing;

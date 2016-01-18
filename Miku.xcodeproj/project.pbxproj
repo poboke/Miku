@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C501EC171C4D0C26005148A2 /* MikuConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C501EC141C4D0C26005148A2 /* MikuConfigManager.m */; };
+		C501EC181C4D0C26005148A2 /* MikuMainMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C501EC161C4D0C26005148A2 /* MikuMainMenuItem.m */; };
 		C55955D51C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m in Sources */ = {isa = PBXBuildFile; fileRef = C55955D41C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m */; };
-		C561CA4B1C44E34E00401E7A /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C561CA4A1C44E34E00401E7A /* ConfigManager.m */; };
 		C5A7B8A61C43B4920055F0C4 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8A51C43B4920055F0C4 /* AppKit.framework */; };
 		C5A7B8A81C43B4920055F0C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A7B8A71C43B4920055F0C4 /* Foundation.framework */; };
 		C5A7B8B01C43B4920055F0C4 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A7B8AF1C43B4920055F0C4 /* JRSwizzle.m */; };
@@ -20,21 +21,21 @@
 		C5DD02F51C44C2ED00233375 /* miku-dancing.coding.io in Resources */ = {isa = PBXBuildFile; fileRef = C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */; };
 		C5DD02F81C44C32A00233375 /* MikuDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02F71C44C32A00233375 /* MikuDragView.m */; };
 		C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DD02FA1C44C33900233375 /* MikuWebView.m */; };
-		C5E448F61C48C9B1003FC1B0 /* MainMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C501EC131C4D0C26005148A2 /* MikuConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuConfigManager.h; sourceTree = "<group>"; };
+		C501EC141C4D0C26005148A2 /* MikuConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuConfigManager.m; sourceTree = "<group>"; };
+		C501EC151C4D0C26005148A2 /* MikuMainMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuMainMenuItem.h; sourceTree = "<group>"; };
+		C501EC161C4D0C26005148A2 /* MikuMainMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuMainMenuItem.m; sourceTree = "<group>"; };
 		C55955D31C44C1CA007F9389 /* IDESourceCodeEditor+Miku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDESourceCodeEditor+Miku.h"; sourceTree = "<group>"; };
 		C55955D41C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IDESourceCodeEditor+Miku.m"; sourceTree = "<group>"; };
-		C561CA491C44E34E00401E7A /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
-		C561CA4A1C44E34E00401E7A /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		C5A7B8A21C43B4920055F0C4 /* Miku.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Miku.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A7B8A51C43B4920055F0C4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		C5A7B8A71C43B4920055F0C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		C5A7B8AB1C43B4920055F0C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5A7B8AE1C43B4920055F0C4 /* JRSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
 		C5A7B8AF1C43B4920055F0C4 /* JRSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
-		C5A7B8B11C43B4920055F0C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C5A7B8B31C43B4920055F0C4 /* Miku.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Miku.h; sourceTree = "<group>"; };
 		C5A7B8B41C43B4920055F0C4 /* Miku.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Miku.m; sourceTree = "<group>"; };
 		C5A7B8BF1C43B5030055F0C4 /* DVTLayoutView_ML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTLayoutView_ML.h; sourceTree = "<group>"; };
@@ -54,8 +55,6 @@
 		C5DD02F71C44C32A00233375 /* MikuDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuDragView.m; sourceTree = "<group>"; };
 		C5DD02F91C44C33900233375 /* MikuWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikuWebView.h; sourceTree = "<group>"; };
 		C5DD02FA1C44C33900233375 /* MikuWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikuWebView.m; sourceTree = "<group>"; };
-		C5E448F41C48C9B1003FC1B0 /* MainMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuItem.h; sourceTree = "<group>"; };
-		C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +84,10 @@
 		C561CA481C44E34E00401E7A /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				C561CA491C44E34E00401E7A /* ConfigManager.h */,
-				C561CA4A1C44E34E00401E7A /* ConfigManager.m */,
-				C5E448F41C48C9B1003FC1B0 /* MainMenuItem.h */,
-				C5E448F51C48C9B1003FC1B0 /* MainMenuItem.m */,
+				C501EC131C4D0C26005148A2 /* MikuConfigManager.h */,
+				C501EC141C4D0C26005148A2 /* MikuConfigManager.m */,
+				C501EC151C4D0C26005148A2 /* MikuMainMenuItem.h */,
+				C501EC161C4D0C26005148A2 /* MikuMainMenuItem.m */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -140,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				C5A7B8AB1C43B4920055F0C4 /* Info.plist */,
-				C5A7B8B11C43B4920055F0C4 /* PrefixHeader.pch */,
 				C5DD02F41C44C2ED00233375 /* miku-dancing.coding.io */,
 			);
 			name = "Supporting Files";
@@ -269,12 +267,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DD02F81C44C32A00233375 /* MikuDragView.m in Sources */,
+				C501EC181C4D0C26005148A2 /* MikuMainMenuItem.m in Sources */,
 				C5A7B8B01C43B4920055F0C4 /* JRSwizzle.m in Sources */,
 				C5A7B8B51C43B4920055F0C4 /* Miku.m in Sources */,
+				C501EC171C4D0C26005148A2 /* MikuConfigManager.m in Sources */,
 				C5DD02FB1C44C33900233375 /* MikuWebView.m in Sources */,
 				C55955D51C44C1CA007F9389 /* IDESourceCodeEditor+Miku.m in Sources */,
-				C561CA4B1C44E34E00401E7A /* ConfigManager.m in Sources */,
-				C5E448F61C48C9B1003FC1B0 /* MainMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

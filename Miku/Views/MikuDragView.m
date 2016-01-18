@@ -7,7 +7,7 @@
 //
 
 #import "MikuDragView.h"
-#import "ConfigManager.h"
+#import "MikuConfigManager.h"
 
 @interface MikuDragView() <WebFrameLoadDelegate>
 
@@ -87,7 +87,7 @@
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
     //等待异次元空间加载完毕，设置用户选择的属性
-    ConfigManager *configManager = [ConfigManager sharedManager];
+    MikuConfigManager *configManager = [MikuConfigManager sharedManager];
     [self.mikuWebView setMusicType:configManager.musicType];
     [self.mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
     [self setCustomPlayList];
