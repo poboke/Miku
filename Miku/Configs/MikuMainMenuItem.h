@@ -1,5 +1,5 @@
 //
-//  MainMenuItem.h
+//  MikuMainMenuItem.h
 //  ActivatePowerMode
 //
 //  Created by Jobs on 16/1/15.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MainMenuItem : NSMenuItem
+@interface MikuMainMenuItem : NSMenuItem
 
 @end

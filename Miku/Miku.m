@@ -7,8 +7,8 @@
 //
 
 #import "Miku.h"
-#import "ConfigManager.h"
-#import "MainMenuItem.h"
+#import "MikuConfigManager.h"
+#import "MikuMainMenuItem.h"
 #import "IDESourceCodeEditor+Miku.h"
 
 @interface Miku()
@@ -61,7 +61,7 @@
     
     [self addPluginsMenu];
     
-    if ([ConfigManager sharedManager].isEnablePlugin) {
+    if ([MikuConfigManager sharedManager].isEnablePlugin) {
         self.enablePlugin = YES;
     }
 }
@@ -81,7 +81,7 @@
     }
     
     // Add Subitem
-    MainMenuItem *mainMenuItem = [[MainMenuItem alloc] init];
+    MikuMainMenuItem *mainMenuItem = [[MikuMainMenuItem alloc] init];
     [pluginsMenuItem.submenu addItem:mainMenuItem];
 }
 
