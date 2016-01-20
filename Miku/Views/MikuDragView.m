@@ -90,7 +90,10 @@
     MikuConfigManager *configManager = [MikuConfigManager sharedManager];
     [self.mikuWebView setMusicType:configManager.musicType];
     [self.mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
-    [self setCustomPlayList];
+    [self.mikuWebView setIsPlayItunesMusic:configManager.isPlayItunesMusic];
+    if (!configManager.isPlayItunesMusic) {
+        [self setCustomPlayList];
+    }
 }
 
 
