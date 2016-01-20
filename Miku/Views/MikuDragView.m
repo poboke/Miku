@@ -101,21 +101,24 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString * musicFolderPath = [NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *musicFolderPath = [NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, YES) lastObject];
     if (![fileManager fileExistsAtPath:musicFolderPath]) {
         return;
     }
     
-    NSMutableArray * musicPaths = [[NSMutableArray alloc]init];
-    //获取音乐文件夹下所有的音乐
-    NSDirectoryEnumerator *myDirectoryEnumerator=[fileManager enumeratorAtPath:musicFolderPath];
-    NSString * musicSubPath;
-    while((musicSubPath=[myDirectoryEnumerator nextObject])!=nil){
+    // 获取音乐文件夹下所有的音乐
+    NSMutableArray *musicPaths = [[NSMutableArray alloc] init];
+    NSDirectoryEnumerator *directoryEnumerator = [fileManager enumeratorAtPath:musicFolderPath];
+    NSString *musicSubPath;
+    while (musicSubPath = [directoryEnumerator nextObject]) {
         if ([musicSubPath hasSuffix:@".mp3"]) {
-            NSString * musicPath = [NSString stringWithFormat:@"'%@'",[musicFolderPath stringByAppendingPathComponent:musicSubPath]];
+            NSString *musicPath = [musicFolderPath stringByAppendingPathComponent:musicSubPath];
+            musicPath = [musicPath stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+            musicPath = [NSString stringWithFormat:@"'%@'", musicPath];
             [musicPaths addObject:musicPath];
         }
     }
+    
     if (musicPaths.count == 0) {
         return;
     }
