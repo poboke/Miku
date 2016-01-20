@@ -13,7 +13,7 @@ var container;
 
 var playIndex = 0;
 var playList = ['./resources/bgm.mp3'];
-audio.src = playList[playIndex];
+resetMusicSrc();
 
 var mesh, camera, scene, renderer;
 
@@ -32,6 +32,13 @@ var clock = new THREE.Clock();
 init();
 animate();
 
+
+//重新设置音乐地址
+function resetMusicSrc() {
+    //随机播放
+    playIndex = parseInt(Math.random() * playList.length, 10);
+    audio.src = playList[playIndex];
+}
 
 function init() {
 
@@ -74,8 +81,7 @@ function init() {
         audio.play();
         //audio.loop = true;
         audio.onended = function(){
-            playIndex = (playIndex + 1) % playList.length;
-            audio.src = playList[playIndex];
+            resetMusicSrc();
             audio.onloadeddata = function(){
                 audio.play();
             }
@@ -207,9 +213,8 @@ Control.prototype = {
         if (list.length == 0) {
             return;
         }
-        playIndex = 0;
         playList = list;
-        audio.src = playList[playIndex];
+        resetMusicSrc();
         audio.play()
     }
 
