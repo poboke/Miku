@@ -101,28 +101,21 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
-    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
+    NSString * musicFolderPath = [NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, YES) lastObject];
+    if (![fileManager fileExistsAtPath:musicFolderPath]) {
         return;
     }
     
-    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
-    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
-        return;
-    }
-    
-    NSMutableArray *musicPaths = [NSMutableArray array];
-    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
-    NSArray *musicNames = mikuConfig[@"MusicNames"];
-    
-    for (NSString *musicName in musicNames) {
-        NSString *musicPath = [NSString stringWithFormat:@"%@/%@", mikuConfigPath, musicName];
-        if ([fileManager fileExistsAtPath:musicPath]) {
-            musicPath = [NSString stringWithFormat:@"\"%@\"", musicPath];
+    NSMutableArray * musicPaths = [[NSMutableArray alloc]init];
+    //获取音乐文件夹下所有的音乐
+    NSDirectoryEnumerator *myDirectoryEnumerator=[fileManager enumeratorAtPath:musicFolderPath];
+    NSString * musicSubPath;
+    while((musicSubPath=[myDirectoryEnumerator nextObject])!=nil){
+        if ([musicSubPath hasSuffix:@".mp3"]) {
+            NSString * musicPath = [NSString stringWithFormat:@"'%@'",[musicFolderPath stringByAppendingPathComponent:musicSubPath]];
             [musicPaths addObject:musicPath];
         }
     }
-    
     if (musicPaths.count == 0) {
         return;
     }
