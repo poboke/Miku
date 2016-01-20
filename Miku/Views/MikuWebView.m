@@ -86,6 +86,19 @@
     [self stringByEvaluatingJavaScriptFromString:script];
 }
 
+/**
+ *  设置是否播放iTunes里的音乐
+ *
+ *  @param isPlayItunes 是否播放iTunes
+ */
+- (void)setIsPlayItunesMusic:(BOOL)isPlayItunes {
+    if (isPlayItunes) {
+        [self setItunesPlayList];
+    }else {
+        NSString *script = @"control.setPlayList(['./resources/bgm.mp3'])";
+        [self stringByEvaluatingJavaScriptFromString:script];
+    }
+}
 
 /**
  *  设置音乐类型
@@ -139,5 +152,43 @@
     
     return NO;
 }
+
+#pragma mark - iTunes Music 
+
+- (void)setItunesPlayList
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
+    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
+        return;
+    }
+    
+    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
+    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
+        return;
+    }
+    
+    NSMutableArray *musicPaths = [NSMutableArray array];
+    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+    NSArray *musicNames = mikuConfig[@"iTunesMusicNames"];
+    
+    for (NSString *musicName in musicNames) {
+        NSString *musicPath = [NSString stringWithFormat:@"%@", musicName];
+        if ([fileManager fileExistsAtPath:musicPath]) {
+            musicPath = [NSString stringWithFormat:@"\"%@\"", musicPath];
+            [musicPaths addObject:musicPath];
+        }
+    }
+    
+    if (musicPaths.count == 0) {
+        return;
+    }
+    
+    NSString *songs = [musicPaths componentsJoinedByString:@","];
+    NSString *script = [NSString stringWithFormat:@"control.setPlayList([%@])", songs];
+    [self stringByEvaluatingJavaScriptFromString:script];
+}
+
 
 @end

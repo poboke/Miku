@@ -11,12 +11,14 @@
 static NSString * const MikuPluginConfigKeyEnablePlugin = @"MikuPluginConfigKeyEnablePlugin";
 static NSString * const MikuPluginConfigKeyEnableKeepDancing = @"MikuPluginConfigKeyEnableKeepDancing";
 static NSString * const MikuPluginConfigKeyMusicType = @"MikuPluginConfigKeyMusicType";
+static NSString * const MikuPluginConfigKeyPlayItunesMusic = @"MikuPluginConfigKeyPlayItunesMusic";
 
 @implementation MikuConfigManager
 
 @synthesize enablePlugin = _enablePlugin;
 @synthesize enableKeepDancing = _enableKeepDancing;
 @synthesize musicType = _musicType;
+@synthesize playItunesMusic = _playItunesMusic;
 
 + (instancetype)sharedManager
 {
@@ -90,6 +92,18 @@ static NSString * const MikuPluginConfigKeyMusicType = @"MikuPluginConfigKeyMusi
 {
     _enableKeepDancing = enableKeepDancing;
     [self setBoolValue:enableKeepDancing forKey:MikuPluginConfigKeyEnableKeepDancing];
+}
+
+- (BOOL)isPlayItunesMusic {
+    if (!_playItunesMusic) {
+        _playItunesMusic = [self boolValueForKey:MikuPluginConfigKeyPlayItunesMusic];
+    }
+    return _playItunesMusic;
+}
+
+- (void)setPlayItunesMusic:(BOOL)playItunesMusic {
+    _playItunesMusic = playItunesMusic;
+    [self setBoolValue:playItunesMusic forKey:MikuPluginConfigKeyPlayItunesMusic];
 }
 
 

@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
 @property (nonatomic, assign, getter=isEnableKeepDancing) BOOL enableKeepDancing;
+@property (nonatomic, assign, getter=isPlayItunesMusic) BOOL playItunesMusic;
 @property (nonatomic, assign) NSInteger musicType;
 
 + (instancetype)sharedManager;

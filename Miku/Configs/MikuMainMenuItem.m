@@ -14,9 +14,11 @@
 typedef NS_ENUM(NSUInteger, MenuItemType) {
     kMenuItemTypeEnablePlugin = 1,
     kMenuItemTypeEnableKeepDancing,
+    kMenuItemTypePlayItunesMusic,
     kMenuItemTypeEnableMusicDefault,
     kMenuItemTypeEnableMusicNormal,
     kMenuItemTypeEnableMusicMute,
+    kMenuItemTypeUpdateItunesPlist,
 };
 
 
@@ -28,6 +30,9 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
 @property (nonatomic, strong) NSMenuItem *musicDefaultMenuItem;
 @property (nonatomic, strong) NSMenuItem *musicNormalMenuItem;
 @property (nonatomic, strong) NSMenuItem *musicMuteMenuItem;
+
+@property (nonatomic, strong) NSMenuItem *playItunesMusicMenuItem;
+@property (nonatomic, strong) NSMenuItem *updateItunesMusicMenuItem;
 
 @end
 
@@ -55,6 +60,14 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
         self.keepDancingMenuItem.enabled = configManager.isEnablePlugin;
         [configMenu addItem:self.keepDancingMenuItem];
         
+        self.playItunesMusicMenuItem = [self menuItemWithTitle:@"Play iTunes Music" type:kMenuItemTypePlayItunesMusic];
+        self.playItunesMusicMenuItem.state = configManager.isPlayItunesMusic;
+        self.playItunesMusicMenuItem.enabled = configManager.isEnablePlugin;
+        [configMenu addItem:self.playItunesMusicMenuItem];
+        
+        self.updateItunesMusicMenuItem = [self menuItemWithTitle:@"Update iTunes Music Plist" type:kMenuItemTypeUpdateItunesPlist];
+        [configMenu addItem:self.updateItunesMusicMenuItem];
+        
         // MusicType Menu Item Begin
         
         self.musicMenuItem = [[NSMenuItem alloc] init];
@@ -81,6 +94,8 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
         [musicConfigMenu addItem:self.musicMuteMenuItem];
         
         // MusicType Menu Item End
+        
+
         
     }
     
@@ -111,39 +126,107 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
     
     switch (type) {
             
-        case kMenuItemTypeEnablePlugin:
+        case kMenuItemTypeEnablePlugin: {
             configManager.enablePlugin = !configManager.isEnablePlugin;
             [Miku sharedPlugin].enablePlugin = configManager.isEnablePlugin;
             self.keepDancingMenuItem.enabled = configManager.isEnablePlugin;
             self.musicMenuItem.enabled = configManager.isEnablePlugin;
             break;
+        }
             
-        case kMenuItemTypeEnableKeepDancing:
+        case kMenuItemTypeEnableKeepDancing: {
             configManager.enableKeepDancing = !configManager.isEnableKeepDancing;
             [mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
             break;
+        }
             
-        case kMenuItemTypeEnableMusicDefault:
+        case kMenuItemTypePlayItunesMusic: {
+            configManager.playItunesMusic = !configManager.isPlayItunesMusic;
+            [mikuWebView setIsPlayItunesMusic:configManager.isPlayItunesMusic];
+            break;
+        }
+            
+        case kMenuItemTypeEnableMusicDefault: {
             configManager.musicType = MikuMusicTypeDefault;
             [mikuWebView setMusicType:configManager.musicType];
             self.musicNormalMenuItem.state = NSOffState;
             self.musicMuteMenuItem.state = NSOffState;
             break;
+        }
             
-        case kMenuItemTypeEnableMusicNormal:
+        case kMenuItemTypeEnableMusicNormal: {
             configManager.musicType = MikuMusicTypeNormal;
             [mikuWebView setMusicType:configManager.musicType];
             self.musicDefaultMenuItem.state = NSOffState;
             self.musicMuteMenuItem.state = NSOffState;
             break;
+        }
             
-        case kMenuItemTypeEnableMusicMute:
+        case kMenuItemTypeEnableMusicMute: {
             configManager.musicType = MikuMusicTypeMute;
             [mikuWebView setMusicType:configManager.musicType];
             self.musicDefaultMenuItem.state = NSOffState;
             self.musicNormalMenuItem.state = NSOffState;
             break;
+        }
+        
+        case kMenuItemTypeUpdateItunesPlist: {
+            [self touchUpInsideCreateItunesMenuItem];
+            configManager.playItunesMusic = YES;
+            [mikuWebView setIsPlayItunesMusic:configManager.isPlayItunesMusic];
+            self.updateItunesMusicMenuItem.state = NSOffState;
+            self.playItunesMusicMenuItem.state = NSOnState;
+            break;
+        }
     }
+}
+
+- (void)touchUpInsideCreateItunesMenuItem
+{
+    // Do any additional setup after loading the view.
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
+    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
+        [fileManager createDirectoryAtPath:mikuConfigPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
+    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
+        [fileManager createFileAtPath:mikuConfigPlistPath contents:nil attributes:nil];
+    }
+    
+    NSError *error = [[NSError alloc]init];
+    NSMutableArray *itunesMusicPaths = [NSMutableArray array];
+    //Get Music Path
+    NSString *userMusicPath =  NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, true).firstObject;
+    //Get Vocalist
+    NSString *vocalistSearchPath = [userMusicPath stringByAppendingPathComponent:@"/iTunes/iTunes Media/Music"];
+    NSArray *vocalistPathArray = [fileManager contentsOfDirectoryAtPath:vocalistSearchPath error:&error];
+    //
+    for (NSString *path in vocalistPathArray) {
+        //Get Album
+        if (![path hasPrefix:@"."]) {
+            NSString *ablumSearchPath = [vocalistSearchPath stringByAppendingPathComponent:path];
+            NSArray *ablumPathArray = [fileManager contentsOfDirectoryAtPath:ablumSearchPath error:&error];
+            //Get Music
+            for (NSString *path in ablumPathArray) {
+                if (![path hasPrefix:@"."]) {
+                    NSString *musicSearchPath = [ablumSearchPath stringByAppendingPathComponent:path];
+                    NSArray *musicPathArray = [fileManager contentsOfDirectoryAtPath:musicSearchPath error:&error];
+                    for (NSString *path in musicPathArray) {
+                        if ([path hasSuffix:@"mp3"] || [path hasSuffix:@"m4a"]) {
+                            [itunesMusicPaths addObject:[musicSearchPath stringByAppendingPathComponent:path]];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //Rewrite the config plist
+    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+    [mikuConfig setValue:itunesMusicPaths forKey:@"iTunesMusicNames"];
+    [mikuConfig writeToFile:mikuConfigPlistPath atomically:YES];
 }
 
 @end
