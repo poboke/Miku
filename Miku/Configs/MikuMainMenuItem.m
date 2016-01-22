@@ -110,11 +110,12 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
     _musicTypeMenuItem.enabled = _configManager.isEnablePlugin;
     //Add Main Menu Item
     [_configMenu addItem:_pluginMenuItem];
+    [_configMenu addItem:_keepDancingMenuItem];
     [_configMenu addItem:_playControlMenuItem];
     [_configMenu addItem:_playTypeMenuItem];
     [_configMenu addItem:_musicSourceMenuItem];
-    [_configMenu addItem:_keepDancingMenuItem];
     [_configMenu addItem:_musicTypeMenuItem];
+    
 
 }
 
