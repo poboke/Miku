@@ -7,6 +7,7 @@
 //
 
 #import "MikuWebView.h"
+#import "MikuConfigManager.h"
 
 @interface MikuWebView () <NSDraggingDestination>
 @end
@@ -29,6 +30,9 @@
         NSURL *htmlUrl = [NSURL fileURLWithPath:htmlPath];
         NSURLRequest *request = [NSURLRequest requestWithURL:htmlUrl];
         [self.mainFrame loadRequest:request];
+        //
+        _customSource = @"";
+        _itunesSrouce = @"";
     }
     
     return self;
@@ -51,6 +55,17 @@
 - (void)play
 {
     [self stringByEvaluatingJavaScriptFromString:@"control.play()"];
+}
+
+- (void)playSource:(NSString *)source {
+    NSString *script;
+    if (source && ![source isEqualToString:@""]) {
+        script = [NSString stringWithFormat:@"control.setPlayList([%@])", source];
+    }else {
+        script = @"control.setPlayList(['./resources/bgm.mp3'])";
+    }
+    [self stringByEvaluatingJavaScriptFromString:script];
+
 }
 
 
@@ -86,19 +101,6 @@
     [self stringByEvaluatingJavaScriptFromString:script];
 }
 
-/**
- *  设置是否播放iTunes里的音乐
- *
- *  @param isPlayItunes 是否播放iTunes
- */
-- (void)setIsPlayItunesMusic:(BOOL)isPlayItunes {
-    if (isPlayItunes) {
-        [self setItunesPlayList];
-    }else {
-        NSString *script = @"control.setPlayList(['./resources/bgm.mp3'])";
-        [self stringByEvaluatingJavaScriptFromString:script];
-    }
-}
 
 /**
  *  设置音乐类型
@@ -125,6 +127,54 @@
     }
 }
 
+- (void)setMusicSource:(MikuMusicSource)musicSource {
+    switch (musicSource) {
+        case MikuMusicSourceCustom: {
+            [self playSource:_customSource];
+            break;
+        }
+        case MikuMusicSourceItunes: {
+            [self playSource:_itunesSrouce];
+            break;
+        }
+        case MikuMusicSourceDefault: {
+            [self playSource:nil];
+            break;
+        }
+    }
+}
+
+- (void)setMusicPlayType:(MikuPlayType)playType {
+    switch (playType) {
+        case MikuPlayTypeSequence:
+            [self stringByEvaluatingJavaScriptFromString:@"control.setSequencePlay()"];
+            break;
+        case MikuPlayTypeRandom:
+            [self stringByEvaluatingJavaScriptFromString:@"control.setRandomPlay()"];
+            break;
+        case MikuPlayTypeSingle:
+            [self stringByEvaluatingJavaScriptFromString:@"control.setSinglePlay()"];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)musicPlayControl:(MikuPlayControl)playControl {
+    switch (playControl) {
+        case MikuPlayControlBefore:
+            [self stringByEvaluatingJavaScriptFromString:@"control.beforeMusic()"];
+            break;
+        case MikuPlayControlRePlay:
+            [self stringByEvaluatingJavaScriptFromString:@"control.replayMusic()"];
+            break;
+        case MikuPlayControlAfter:
+            [self stringByEvaluatingJavaScriptFromString:@"control.afterMusic()"];
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark - Drag music onto miku
 
@@ -146,49 +196,20 @@
 
     NSArray *list = [pasteboard propertyListForType:NSFilenamesPboardType];
     NSString *fileURL = list.firstObject;
-
+    
+    //Check Plist Exist
+    NSString *mikuConfigPlistPath = [MikuConfigManager sharedManager].configPlistPath;
+    //Rewrite the config plist
+    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+    NSMutableArray *customMusics = [NSMutableArray arrayWithArray:mikuConfig[@"CustomMusics"]];
+    [customMusics addObject:[NSString stringWithFormat:@"'%@'", fileURL]];
+    [mikuConfig setValue:customMusics forKey:@"CustomMusics"];
+    [mikuConfig writeToFile:mikuConfigPlistPath atomically:YES];
+    //Play the Drag Music
     NSString *script = [NSString stringWithFormat:@"control.setPlayList(['%@'])", fileURL];
     [self stringByEvaluatingJavaScriptFromString:script];
     
     return NO;
 }
-
-#pragma mark - iTunes Music 
-
-- (void)setItunesPlayList
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
-    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
-        return;
-    }
-    
-    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
-    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
-        return;
-    }
-    
-    NSMutableArray *musicPaths = [NSMutableArray array];
-    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
-    NSArray *musicNames = mikuConfig[@"iTunesMusicNames"];
-    
-    for (NSString *musicName in musicNames) {
-        NSString *musicPath = [NSString stringWithFormat:@"%@", musicName];
-        if ([fileManager fileExistsAtPath:musicPath]) {
-            musicPath = [NSString stringWithFormat:@"\"%@\"", musicPath];
-            [musicPaths addObject:musicPath];
-        }
-    }
-    
-    if (musicPaths.count == 0) {
-        return;
-    }
-    
-    NSString *songs = [musicPaths componentsJoinedByString:@","];
-    NSString *script = [NSString stringWithFormat:@"control.setPlayList([%@])", songs];
-    [self stringByEvaluatingJavaScriptFromString:script];
-}
-
 
 @end

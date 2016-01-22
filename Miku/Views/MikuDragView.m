@@ -90,10 +90,7 @@
     MikuConfigManager *configManager = [MikuConfigManager sharedManager];
     [self.mikuWebView setMusicType:configManager.musicType];
     [self.mikuWebView setIsKeepDancing:configManager.isEnableKeepDancing];
-    [self.mikuWebView setIsPlayItunesMusic:configManager.isPlayItunesMusic];
-    if (!configManager.isPlayItunesMusic) {
-        [self setCustomPlayList];
-    }
+    [self setCustomPlayList];
 }
 
 
@@ -102,37 +99,63 @@
  */
 - (void)setCustomPlayList
 {
+    //
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableArray *itunesMusics = [NSMutableArray array];
     
-    NSString *mikuConfigPath = [@"~/MikuConfig" stringByExpandingTildeInPath];
-    if (![fileManager fileExistsAtPath:mikuConfigPath]) {
-        return;
+    //Upadate iTunes Music
+    //Get iTunes Music Path
+    NSString *itunesMusicPath = [MikuConfigManager sharedManager].itunesMusicPath;
+    //Get All iTunes Musics
+    NSDirectoryEnumerator *myDirectoryEnumerator=[fileManager enumeratorAtPath:itunesMusicPath];
+    NSString * musicSubPath;
+    while((musicSubPath = [myDirectoryEnumerator nextObject]) != nil){
+        if ([musicSubPath hasSuffix:@".mp3"] || [musicSubPath hasSuffix:@".m4a"]) {
+            NSString *musicPath = [itunesMusicPath stringByAppendingPathComponent:musicSubPath];
+            musicPath = [musicPath stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+            musicPath = [NSString stringWithFormat:@"'%@'", musicPath];
+            [itunesMusics addObject:musicPath];
+        }
     }
-    
-    NSString *mikuConfigPlistPath = [mikuConfigPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
-    if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
-        return;
+    //Check Plist Exist
+    NSString *mikuConfigPlistPath = [MikuConfigManager sharedManager].configPlistPath;
+    NSMutableDictionary *mikuConfig = [[NSMutableDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+    if (!mikuConfig) {
+        mikuConfig = [NSMutableDictionary dictionary];
     }
-    
-    NSMutableArray *musicPaths = [NSMutableArray array];
-    NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
-    NSArray *musicNames = mikuConfig[@"MusicNames"];
-    
-    for (NSString *musicName in musicNames) {
-        NSString *musicPath = [NSString stringWithFormat:@"%@/%@", mikuConfigPath, musicName];
-        if ([fileManager fileExistsAtPath:musicPath]) {
-            musicPath = [NSString stringWithFormat:@"\"%@\"", musicPath];
-            [musicPaths addObject:musicPath];
+    //Rewrite the config plist
+    [mikuConfig setValue:itunesMusics forKey:@"iTunesMusics"];
+    [mikuConfig writeToFile:mikuConfigPlistPath atomically:YES];
+
+    NSArray *fileCustomMusics = mikuConfig[@"CustomMusics"];
+    NSMutableArray *customMusics = [NSMutableArray array];
+    for (NSString *musicPath in fileCustomMusics) {
+        NSMutableString *tempStr = [[NSMutableString alloc]initWithString:musicPath];
+        [tempStr deleteCharactersInRange:NSMakeRange(0, 1)];
+        [tempStr deleteCharactersInRange:NSMakeRange(tempStr.length-1, 1)];
+        if ([fileManager fileExistsAtPath:tempStr]) {
+            [customMusics addObject:musicPath];
         }
     }
     
-    if (musicPaths.count == 0) {
-        return;
+    //Play Music
+    _mikuWebView.customSource = [customMusics componentsJoinedByString:@","];
+    _mikuWebView.itunesSrouce = [itunesMusics componentsJoinedByString:@","];
+    if ([MikuConfigManager sharedManager].musicSource == MikuMusicSourceCustom && customMusics.count != 0) {
+        [_mikuWebView setMusicSource:MikuMusicSourceCustom];
+    }else if([MikuConfigManager sharedManager].musicSource == MikuMusicSourceItunes && itunesMusics.count != 0) {
+        [_mikuWebView setMusicSource:MikuMusicSourceItunes];
+    }else {
+        [_mikuWebView setMusicSource:MikuMusicSourceDefault];
     }
     
-    NSString *songs = [musicPaths componentsJoinedByString:@","];
-    NSString *script = [NSString stringWithFormat:@"control.setPlayList([%@])", songs];
-    [self.mikuWebView stringByEvaluatingJavaScriptFromString:script];
+    if ([MikuConfigManager sharedManager].playType == MikuPlayTypeRandom) {
+        [_mikuWebView setMusicPlayType:[MikuConfigManager sharedManager].playType];
+        [_mikuWebView musicPlayControl:MikuPlayControlRePlay];
+    }else if([MikuConfigManager sharedManager].playType == MikuPlayTypeSingle) {
+        //上次关闭时单曲循环就重新从头播放
+        [MikuConfigManager sharedManager].playType = MikuPlayTypeSequence;
+    }
 }
 
 

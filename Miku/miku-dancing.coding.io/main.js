@@ -12,7 +12,11 @@ var dance = false;
 var container;
 
 var playIndex = 0;
+var loopFlag = false;
 var playList = ['./resources/bgm.mp3'];
+var sequencePlayList = playList;
+var randomPlayList = playList;
+
 audio.src = playList[playIndex];
 
 var mesh, camera, scene, renderer;
@@ -72,13 +76,14 @@ function init() {
         //加载完后赠送10秒播放时间
         dancingTime = 10;
         audio.play();
-        //audio.loop = true;
-        audio.onended = function(){
-            playIndex = (playIndex + 1) % playList.length;
-            audio.src = playList[playIndex];
-            audio.onloadeddata = function(){
-                audio.play();
-            }
+        audio.onended = function () {
+              if (!loopFlag) {
+                playIndex = (playIndex + 1) % playList.length;
+              }
+              audio.src = playList[playIndex];
+              audio.onloadeddata = function(){
+                  audio.play();
+              }
         }
 
         mesh = object;
@@ -119,7 +124,6 @@ function onDocumentMouseMove( event ) {
     mouseY = ( event.clientY - windowHalfY ) / 2;
 
 }
-
 
 function animate() {
     requestAnimationFrame( animate );
@@ -169,6 +173,17 @@ function render(delta) {
     renderer.render( scene, camera );
 }
 
+function getMusicIndexOfArray(array) {
+  var currentMusic = audio.currentSrc;
+  currentMusic = currentMusic.substring(7);
+  currentMusic = decodeURI(currentMusic);
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] == currentMusic) {
+        playIndex = i;
+        break;
+      }
+    }
+}
 
 /*
  * 交互控制模块
@@ -209,9 +224,41 @@ Control.prototype = {
         }
         playIndex = 0;
         playList = list;
+        sequencePlayList = list;
         audio.src = playList[playIndex];
         audio.play()
+    },
+    setSequencePlay: function() {
+        getMusicIndexOfArray(sequencePlayList)
+        playList = sequencePlayList;
+        loopFlag = false;
+    },
+    setRandomPlay: function() {
+      randomPlayList = sequencePlayList.sort(function(){return 0.5 - Math.random()})
+      getMusicIndexOfArray(randomPlayList)
+      playList = randomPlayList;
+      loopFlag = false;
+    },
+    setSinglePlay: function() {
+        loopFlag = true;
+    },
+    beforeMusic: function() {
+      if (playIndex == 0) {
+        playIndex = playList.length -1;
+      }else {
+        playIndex = playIndex - 1;
+      }
+      audio.src = playList[playIndex];
+      audio.play();
+    },
+    replayMusic: function() {
+      audio.src = playList[playIndex];
+      audio.play();
+    },
+    afterMusic: function() {
+      playIndex = (playIndex + 1) % playList.length;
+      audio.src = playList[playIndex];
+      audio.play();
     }
-
 }
 var control = new Control();
