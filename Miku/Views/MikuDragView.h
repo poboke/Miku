@@ -6,11 +6,11 @@
 //  Copyright © 2016年 Jobs. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "MikuWebView.h"
+#import <Cocoa/Cocoa.h>
 
 @interface MikuDragView : NSView
 
-@property (nonatomic, strong) MikuWebView *mikuWebView;
+@property (nonatomic, strong) MikuWebView* mikuWebView;
 
 @end

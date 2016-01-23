@@ -16,9 +16,8 @@
 @property (nonatomic, assign) NSInteger musicSource;
 @property (nonatomic, assign) NSInteger playType;
 
-@property (nonatomic, copy, readonly) NSString *configPlistPath;
-@property (nonatomic, copy, readonly) NSString *itunesMusicPath;
-
+@property (nonatomic, copy, readonly) NSString* configPlistPath;
+@property (nonatomic, copy, readonly) NSString* itunesMusicPath;
 
 + (instancetype)sharedManager;
 
