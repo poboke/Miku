@@ -12,7 +12,7 @@ var dance = false;
 var container;
 
 var playIndex = 0;
-var playList = ['./resources/bgm.mp3'];
+var playList = ['./resources/Perfume - MY COLOR (LTW-Mix) - remix.mp3'];
 resetMusicSrc();
 
 var mesh, camera, scene, renderer;
