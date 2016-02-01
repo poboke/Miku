@@ -19,6 +19,7 @@ var randomPlayList = playList;
 
 audio.src = playList[playIndex];
 
+
 var mesh, camera, scene, renderer;
 
 var directionalLight;
@@ -36,6 +37,13 @@ var clock = new THREE.Clock();
 init();
 animate();
 
+
+//重新设置音乐地址
+function resetMusicSrc() {
+    //随机播放
+    playIndex = parseInt(Math.random() * playList.length, 10);
+    audio.src = playList[playIndex];
+}
 
 function init() {
 
@@ -76,6 +84,7 @@ function init() {
         //加载完后赠送10秒播放时间
         dancingTime = 10;
         audio.play();
+<<<<<<< HEAD
         audio.onended = function () {
               if (!loopFlag) {
                 playIndex = (playIndex + 1) % playList.length;
@@ -84,6 +93,14 @@ function init() {
               audio.onloadeddata = function(){
                   audio.play();
               }
+=======
+        //audio.loop = true;
+        audio.onended = function(){
+            resetMusicSrc();
+            audio.onloadeddata = function(){
+                audio.play();
+            }
+>>>>>>> origin/master
         }
 
         mesh = object;
@@ -222,10 +239,13 @@ Control.prototype = {
         if (list.length == 0) {
             return;
         }
-        playIndex = 0;
         playList = list;
+<<<<<<< HEAD
         sequencePlayList = list;
         audio.src = playList[playIndex];
+=======
+        resetMusicSrc();
+>>>>>>> origin/master
         audio.play()
     },
     setSequencePlay: function() {

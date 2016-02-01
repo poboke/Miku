@@ -29,19 +29,12 @@ Click the `Plugins` menu, choose the `Miku` sub menu.
 
 Custom music play list
 
-1. Copy the `MikuConfig` directory to `~/MikuConfig`.
-2. Put some musics in the `~/MikuConfig` directory.
-3. Edit the `~/MikuConfig/MikuConfig.plist` file, add music names to the `MusicNames` array.
-4. You can also drag a music onto Miku's body to play.
+This plugin will auto play the musics in the `~/Music` directory.
+
 
 自定义音乐播放列表
 
-1. 把`MikuConfig`文件夹拷贝到用户目录下，路径为`~/MikuConfig`。
-2. 把喜欢的音乐文件放在`~/MikuConfig`里。
-3. 编辑`~/MikuConfig/MikuConfig.plist`文件，把音乐名加到`MusicNames`数组里。
-4. 你也可以把一首音乐拖到Miku的身上进行播放。
-
-![image](https://github.com/poboke/Miku/raw/master/Screenshots/playlist.jpg)
+这个插件会自动播放`~/Music`文件夹里的音乐文件。
 
 
 ## Support Xcode versions
