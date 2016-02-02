@@ -84,7 +84,6 @@ function init() {
         //加载完后赠送10秒播放时间
         dancingTime = 10;
         audio.play();
-<<<<<<< HEAD
         audio.onended = function () {
               if (!loopFlag) {
                 playIndex = (playIndex + 1) % playList.length;
@@ -93,14 +92,6 @@ function init() {
               audio.onloadeddata = function(){
                   audio.play();
               }
-=======
-        //audio.loop = true;
-        audio.onended = function(){
-            resetMusicSrc();
-            audio.onloadeddata = function(){
-                audio.play();
-            }
->>>>>>> origin/master
         }
 
         mesh = object;
@@ -240,12 +231,8 @@ Control.prototype = {
             return;
         }
         playList = list;
-<<<<<<< HEAD
         sequencePlayList = list;
         audio.src = playList[playIndex];
-=======
-        resetMusicSrc();
->>>>>>> origin/master
         audio.play()
     },
     setSequencePlay: function() {
