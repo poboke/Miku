@@ -70,13 +70,10 @@
   self.submenu = _configMenu;
 
   // Init Main Menu Item
-  _pluginMenuItem =
-      [self menuItemWithTitle:@"Enable" action:@selector(clickPluginMenuItem)];
+  _pluginMenuItem = [self menuItemWithTitle:@"Enable" action:@selector(clickPluginMenuItem)];
   _pluginMenuItem.state = _configManager.isEnablePlugin;
 
-  _keepDancingMenuItem =
-      [self menuItemWithTitle:@"Enable keep Dancing"
-                       action:@selector(clickKeepDancingMenuItem)];
+  _keepDancingMenuItem = [self menuItemWithTitle:@"Enable keep Dancing" action:@selector(clickKeepDancingMenuItem)];
   _keepDancingMenuItem.state = _configManager.isEnableKeepDancing;
   _keepDancingMenuItem.enabled = _configManager.isEnablePlugin;
 
@@ -109,19 +106,13 @@
 
   MikuMusicType musicType = _configManager.musicType;
 
-  _musicDefaultMenuItem =
-      [self menuItemWithTitle:@"Slow With Miku  🔈"
-                       action:@selector(clickMusicDefaultMenuItem)];
+  _musicDefaultMenuItem = [self menuItemWithTitle:@"Slow With Miku  🔈" action:@selector(clickMusicDefaultMenuItem)];
   _musicDefaultMenuItem.state = (musicType == MikuMusicTypeDefault);
 
-  _musicNormalMenuItem =
-      [self menuItemWithTitle:@"Not Slow With Miku  🔊"
-                       action:@selector(clickMusicNormalMenuItem)];
+  _musicNormalMenuItem = [self menuItemWithTitle:@"Not Slow With Miku  🔊" action:@selector(clickMusicNormalMenuItem)];
   _musicNormalMenuItem.state = (musicType == MikuMusicTypeNormal);
 
-  _musicMuteMenuItem =
-      [self menuItemWithTitle:@"Mute      🔇"
-                       action:@selector(clickMusicMuteMenuItem)];
+  _musicMuteMenuItem = [self menuItemWithTitle:@"Mute      🔇" action:@selector(clickMusicMuteMenuItem)];
   _musicMuteMenuItem.state = (musicType == MikuMusicTypeMute);
 
   [_musicTypeMenu addItem:_musicDefaultMenuItem];
@@ -138,14 +129,10 @@
 
   MikuMusicSource musicSource = _configManager.musicSource;
 
-  _musicSourceCustomMenuItem =
-      [self menuItemWithTitle:@"Custom Music"
-                       action:@selector(clickMusicSourceCustomMenuItem)];
+  _musicSourceCustomMenuItem = [self menuItemWithTitle:@"Custom Music" action:@selector(clickMusicSourceCustomMenuItem)];
   _musicSourceCustomMenuItem.state = (musicSource == MikuMusicSourceCustom);
 
-  _musicSourceItunesMenuItem =
-      [self menuItemWithTitle:@"iTunes Music"
-                       action:@selector(clickMusicSourceItunesMenuItem)];
+  _musicSourceItunesMenuItem = [self menuItemWithTitle:@"iTunes Music" action:@selector(clickMusicSourceItunesMenuItem)];
   _musicSourceItunesMenuItem.state = (musicSource == MikuMusicSourceItunes);
 
   [_musicSourceMenu addItem:_musicSourceCustomMenuItem];
@@ -157,15 +144,9 @@
   _playControlMenu.autoenablesItems = NSOffState;
   _playControlMenuItem.submenu = _playControlMenu;
 
-  _playControlBeforeMenuItem =
-      [self menuItemWithTitle:@"Last Music"
-                       action:@selector(clickPlayControlBeforeMenuItem)];
-  _playControlReplayMenuItem =
-      [self menuItemWithTitle:@"Replay Music"
-                       action:@selector(clickPlayControlReplayMenuItem)];
-  _playControlAfterMenuItem =
-      [self menuItemWithTitle:@"Next Music"
-                       action:@selector(clickPlayControlAfterMenuItem)];
+  _playControlBeforeMenuItem = [self menuItemWithTitle:@"Last Music" action:@selector(clickPlayControlBeforeMenuItem)];
+  _playControlReplayMenuItem = [self menuItemWithTitle:@"Replay Music" action:@selector(clickPlayControlReplayMenuItem)];
+  _playControlAfterMenuItem = [self menuItemWithTitle:@"Next Music" action:@selector(clickPlayControlAfterMenuItem)];
 
   [_playControlMenu addItem:_playControlBeforeMenuItem];
   [_playControlMenu addItem:_playControlReplayMenuItem];
@@ -179,21 +160,14 @@
 
   MikuPlayType playType = _configManager.playType;
 
-  _playTypeSequenceMenuItem =
-      [self menuItemWithTitle:@"Sequence"
-                       action:@selector(clickPlayTypeSequenceMenuItem)];
+  _playTypeSequenceMenuItem = [self menuItemWithTitle:@"Sequence" action:@selector(clickPlayTypeSequenceMenuItem)];
   //上次关闭时单曲循环就重新从头播放
-  _playTypeSequenceMenuItem.state =
-      (playType == MikuPlayTypeSequence || playType == MikuPlayTypeSingle);
+  _playTypeSequenceMenuItem.state = (playType == MikuPlayTypeSequence || playType == MikuPlayTypeSingle);
 
-  _playTypeRandomMenuItem =
-      [self menuItemWithTitle:@"Random"
-                       action:@selector(clickPlayTypeRandomMenuItem)];
+  _playTypeRandomMenuItem = [self menuItemWithTitle:@"Random" action:@selector(clickPlayTypeRandomMenuItem)];
   _playTypeRandomMenuItem.state = (playType == MikuPlayTypeRandom);
 
-  _playTypeSingleMenuItem =
-      [self menuItemWithTitle:@"Single"
-                       action:@selector(clickPlayTypeSingleMenuItem)];
+  _playTypeSingleMenuItem = [self menuItemWithTitle:@"Single" action:@selector(clickPlayTypeSingleMenuItem)];
   _playTypeSingleMenuItem.state = NSOffState;
 
   [_playTypeMenu addItem:_playTypeSequenceMenuItem];

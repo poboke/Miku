@@ -23,10 +23,8 @@
     NSString *pluginPath = @"~/Library/Application "
                            @"Support/Developer/Shared/Xcode/Plug-ins/"
                            @"Miku.xcplugin";
-    NSBundle *pluginBundle =
-        [NSBundle bundleWithPath:[pluginPath stringByExpandingTildeInPath]];
-    NSString *htmlPath =
-        [pluginBundle pathForResource:@"index"
+    NSBundle *pluginBundle = [NSBundle bundleWithPath:[pluginPath stringByExpandingTildeInPath]];
+    NSString *htmlPath = [pluginBundle pathForResource:@"index"
                                ofType:@"html"
                           inDirectory:@"miku-dancing.coding.io"];
     NSURL *htmlUrl = [NSURL fileURLWithPath:htmlPath];
@@ -78,8 +76,7 @@
  *  @param seconds 秒数
  */
 - (void)setPlayingTime:(NSInteger)seconds {
-  NSString *script =
-      [NSString stringWithFormat:@"control.addFrame(%li)", seconds];
+  NSString *script = [NSString stringWithFormat:@"control.addFrame(%li)", seconds];
   [self stringByEvaluatingJavaScriptFromString:script];
 }
 
@@ -89,8 +86,7 @@
  *  @param isKeepDancing 是否一直跳舞
  */
 - (void)setIsKeepDancing:(BOOL)isKeepDancing {
-  NSString *script =
-      [NSString stringWithFormat:@"control.dance(%i)", isKeepDancing];
+  NSString *script = [NSString stringWithFormat:@"control.dance(%i)", isKeepDancing];
   [self stringByEvaluatingJavaScriptFromString:script];
 }
 
@@ -186,19 +182,15 @@
   NSString *fileURL = list.firstObject;
 
   // Check Plist Exist
-  NSString *mikuConfigPlistPath =
-      [MikuConfigManager sharedManager].configPlistPath;
+  NSString *mikuConfigPlistPath = [MikuConfigManager sharedManager].configPlistPath;
   // Rewrite the config plist
-  NSDictionary *mikuConfig =
-      [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
-  NSMutableArray *customMusics =
-      [NSMutableArray arrayWithArray:mikuConfig[@"CustomMusics"]];
+  NSDictionary *mikuConfig = [[NSDictionary alloc] initWithContentsOfFile:mikuConfigPlistPath];
+  NSMutableArray *customMusics = [NSMutableArray arrayWithArray:mikuConfig[@"CustomMusics"]];
   [customMusics addObject:[NSString stringWithFormat:@"'%@'", fileURL]];
   [mikuConfig setValue:customMusics forKey:@"CustomMusics"];
   [mikuConfig writeToFile:mikuConfigPlistPath atomically:YES];
   // Play the Drag Music
-  NSString *script =
-      [NSString stringWithFormat:@"control.setPlayList(['%@'])", fileURL];
+  NSString *script = [NSString stringWithFormat:@"control.setPlayList(['%@'])", fileURL];
   [self stringByEvaluatingJavaScriptFromString:script];
 
   return NO;

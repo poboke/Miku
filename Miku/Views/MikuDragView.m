@@ -126,8 +126,7 @@
   NSArray *fileCustomMusics = mikuConfig[@"CustomMusics"];
   NSMutableArray *customMusics = [NSMutableArray array];
   for (NSString *musicPath in fileCustomMusics) {
-    NSMutableString *tempStr =
-        [[NSMutableString alloc] initWithString:musicPath];
+    NSMutableString *tempStr = [[NSMutableString alloc] initWithString:musicPath];
     [tempStr deleteCharactersInRange:NSMakeRange(0, 1)];
     [tempStr deleteCharactersInRange:NSMakeRange(tempStr.length - 1, 1)];
     if ([fileManager fileExistsAtPath:tempStr]) {
@@ -138,12 +137,9 @@
   // Play Music
   _mikuWebView.customSource = [customMusics componentsJoinedByString:@","];
   _mikuWebView.itunesSrouce = [itunesMusics componentsJoinedByString:@","];
-  if ([MikuConfigManager sharedManager].musicSource == MikuMusicSourceCustom &&
-      customMusics.count != 0) {
+  if ([MikuConfigManager sharedManager].musicSource == MikuMusicSourceCustom && customMusics.count != 0) {
     [_mikuWebView setMusicSource:MikuMusicSourceCustom];
-  } else if ([MikuConfigManager sharedManager].musicSource ==
-                 MikuMusicSourceItunes &&
-             itunesMusics.count != 0) {
+  } else if ([MikuConfigManager sharedManager].musicSource == MikuMusicSourceItunes && itunesMusics.count != 0) {
     [_mikuWebView setMusicSource:MikuMusicSourceItunes];
   } else {
     [_mikuWebView setMusicSource:MikuMusicSourceDefault];

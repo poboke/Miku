@@ -80,8 +80,7 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 
 - (BOOL)isEnableKeepDancing {
   if (!_enableKeepDancing) {
-    _enableKeepDancing =
-        [self boolValueForKey:MikuPluginConfigKeyEnableKeepDancing];
+    _enableKeepDancing = [self boolValueForKey:MikuPluginConfigKeyEnableKeepDancing];
   }
 
   return _enableKeepDancing;
@@ -89,16 +88,14 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 
 - (void)setEnableKeepDancing:(BOOL)enableKeepDancing {
   _enableKeepDancing = enableKeepDancing;
-  [self setBoolValue:enableKeepDancing
-              forKey:MikuPluginConfigKeyEnableKeepDancing];
+  [self setBoolValue:enableKeepDancing forKey:MikuPluginConfigKeyEnableKeepDancing];
 }
 
 #pragma mark - Plugin Status
 
 - (NSInteger)musicType {
   if (!_musicType) {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults]
-        objectForKey:MikuPluginConfigKeyMusicType];
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:MikuPluginConfigKeyMusicType];
     _musicType = [value integerValue];
   }
 
@@ -107,16 +104,13 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 
 - (void)setMusicType:(NSInteger)musicType {
   _musicType = musicType;
-  [[NSUserDefaults standardUserDefaults]
-      setObject:@(musicType)
-         forKey:MikuPluginConfigKeyMusicType];
+  [[NSUserDefaults standardUserDefaults] setObject:@(musicType) forKey:MikuPluginConfigKeyMusicType];
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSInteger)musicSource {
   if (!_musicSource) {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults]
-        objectForKey:MikuPluginConfigKeyMusicSource];
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:MikuPluginConfigKeyMusicSource];
     _musicSource = [value integerValue];
   }
 
@@ -125,16 +119,13 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 
 - (void)setMusicSource:(NSInteger)musicSource {
   _musicSource = musicSource;
-  [[NSUserDefaults standardUserDefaults]
-      setObject:@(musicSource)
-         forKey:MikuPluginConfigKeyMusicSource];
+  [[NSUserDefaults standardUserDefaults] setObject:@(musicSource) forKey:MikuPluginConfigKeyMusicSource];
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSInteger)playType {
   if (!_playType) {
-    NSNumber *value = [[NSUserDefaults standardUserDefaults]
-        objectForKey:MikuPluginConfigKeyPlayType];
+    NSNumber *value = [[NSUserDefaults standardUserDefaults]objectForKey:MikuPluginConfigKeyPlayType];
     _playType = [value integerValue];
   }
 
@@ -143,8 +134,7 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 
 - (void)setPlayType:(NSInteger)playType {
   _playType = playType;
-  [[NSUserDefaults standardUserDefaults] setObject:@(playType)
-                                            forKey:MikuPluginConfigKeyPlayType];
+  [[NSUserDefaults standardUserDefaults] setObject:@(playType) forKey:MikuPluginConfigKeyPlayType];
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -153,16 +143,11 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 - (NSString *)configPlistPath {
   NSFileManager *fileManager = [NSFileManager defaultManager];
   // Get Music Path
-  NSString *userMusicPath = NSSearchPathForDirectoriesInDomains(
-                                NSMusicDirectory, NSUserDomainMask, true)
-                                .firstObject;
+  NSString *userMusicPath = NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, true).firstObject;
   // Check Plist Exist
-  NSString *mikuConfigPlistPath =
-      [userMusicPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
+  NSString *mikuConfigPlistPath = [userMusicPath stringByAppendingPathComponent:@"/MikuConfig.plist"];
   if (![fileManager fileExistsAtPath:mikuConfigPlistPath]) {
-    [fileManager createFileAtPath:mikuConfigPlistPath
-                         contents:nil
-                       attributes:nil];
+    [fileManager createFileAtPath:mikuConfigPlistPath contents:nil attributes:nil];
   }
   return mikuConfigPlistPath;
 }
@@ -170,12 +155,9 @@ static NSString *const MikuPluginConfigKeyPlayControl = @"MikuPluginConfigKeyPla
 - (NSString *)itunesMusicPath {
   NSFileManager *fileManager = [NSFileManager defaultManager];
   // Get Music Path
-  NSString *userMusicPath = NSSearchPathForDirectoriesInDomains(
-                                NSMusicDirectory, NSUserDomainMask, true)
-                                .firstObject;
+  NSString *userMusicPath = NSSearchPathForDirectoriesInDomains(NSMusicDirectory, NSUserDomainMask, true).firstObject;
   // Get iTunes Music Path
-  NSString *itunesMusicPath = [userMusicPath
-      stringByAppendingPathComponent:@"/iTunes/iTunes Media/Music"];
+  NSString *itunesMusicPath = [userMusicPath stringByAppendingPathComponent:@"/iTunes/iTunes Media/Music"];
   if (![fileManager fileExistsAtPath:itunesMusicPath]) {
     return @"";
   }

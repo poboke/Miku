@@ -42,11 +42,7 @@
 
     self.mikuDragView = [[MikuDragView alloc] init];
 
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(applicationDidFinishLaunching:)
-               name:NSApplicationDidFinishLaunchingNotification
-             object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:nil];
   }
 
   return self;
@@ -72,8 +68,7 @@
   if (!pluginsMenuItem) {
     pluginsMenuItem = [[NSMenuItem alloc] init];
     pluginsMenuItem.title = @"Plugins";
-    pluginsMenuItem.submenu =
-        [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
+    pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
     NSInteger windowIndex = [mainMenu indexOfItemWithTitle:@"Window"];
     [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
   }

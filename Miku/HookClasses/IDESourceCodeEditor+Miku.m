@@ -12,16 +12,10 @@
 @implementation IDESourceCodeEditor (Miku)
 
 + (void)hookMiku {
-  [self jr_swizzleMethod:@selector(viewDidLoad)
-              withMethod:@selector(miku_viewDidLoad)
-                   error:nil];
+  [self jr_swizzleMethod:@selector(viewDidLoad) withMethod:@selector(miku_viewDidLoad) error:nil];
 
-  [self jr_swizzleMethod:@selector(textView:
-                             shouldChangeTextInRange:
-                                   replacementString:)
-              withMethod:@selector(miku_textView:
-                             shouldChangeTextInRange:
-                                   replacementString:)
+  [self jr_swizzleMethod:@selector(textView:shouldChangeTextInRange:replacementString:)
+              withMethod:@selector(miku_textView:shouldChangeTextInRange:replacementString:)
                    error:nil];
 }
 
@@ -33,16 +27,12 @@
   [self.containerView addSubview:mikuDragView];
 }
 
-- (BOOL)miku_textView:(NSTextView *)textView
-    shouldChangeTextInRange:(NSRange)affectedCharRange
-          replacementString:(NSString *)replacementString {
+- (BOOL)miku_textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString {
   // 给Miku充能量
   MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
   [mikuWebView setPlayingTime:10];
 
-  return [self miku_textView:textView
-      shouldChangeTextInRange:affectedCharRange
-            replacementString:replacementString];
+  return [self miku_textView:textView shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
 
 @end
