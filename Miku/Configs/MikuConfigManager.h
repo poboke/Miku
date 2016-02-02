@@ -10,14 +10,14 @@
 
 @interface MikuConfigManager : NSObject
 
-@property (nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
-@property (nonatomic, assign, getter=isEnableKeepDancing) BOOL enableKeepDancing;
-@property (nonatomic, assign) NSInteger musicType;
-@property (nonatomic, assign) NSInteger musicSource;
-@property (nonatomic, assign) NSInteger playType;
+@property(nonatomic, assign, getter=isEnablePlugin) BOOL enablePlugin;
+@property(nonatomic, assign, getter=isEnableKeepDancing) BOOL enableKeepDancing;
+@property(nonatomic, assign) NSInteger musicType;
+@property(nonatomic, assign) NSInteger musicSource;
+@property(nonatomic, assign) NSInteger playType;
 
-@property (nonatomic, copy, readonly) NSString* configPlistPath;
-@property (nonatomic, copy, readonly) NSString* itunesMusicPath;
+@property(nonatomic, copy, readonly) NSString *configPlistPath;
+@property(nonatomic, copy, readonly) NSString *itunesMusicPath;
 
 + (instancetype)sharedManager;
 

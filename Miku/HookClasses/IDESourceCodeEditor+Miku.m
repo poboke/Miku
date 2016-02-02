@@ -11,35 +11,38 @@
 
 @implementation IDESourceCodeEditor (Miku)
 
-+ (void)hookMiku
-{
-    [self jr_swizzleMethod:@selector(viewDidLoad)
-                withMethod:@selector(miku_viewDidLoad)
-                     error:nil];
-    
-    [self jr_swizzleMethod:@selector(textView:shouldChangeTextInRange:replacementString:)
-                withMethod:@selector(miku_textView:shouldChangeTextInRange:replacementString:)
-                     error:nil];
++ (void)hookMiku {
+  [self jr_swizzleMethod:@selector(viewDidLoad)
+              withMethod:@selector(miku_viewDidLoad)
+                   error:nil];
+
+  [self jr_swizzleMethod:@selector(textView:
+                             shouldChangeTextInRange:
+                                   replacementString:)
+              withMethod:@selector(miku_textView:
+                             shouldChangeTextInRange:
+                                   replacementString:)
+                   error:nil];
 }
 
+- (void)miku_viewDidLoad {
+  [self miku_viewDidLoad];
 
-- (void)miku_viewDidLoad
-{
-    [self miku_viewDidLoad];
-    
-    // 创建超时空结界空间
-    MikuDragView *mikuDragView = [Miku sharedPlugin].mikuDragView;
-    [self.containerView addSubview:mikuDragView];
+  // 创建超时空结界空间
+  MikuDragView *mikuDragView = [Miku sharedPlugin].mikuDragView;
+  [self.containerView addSubview:mikuDragView];
 }
 
+- (BOOL)miku_textView:(NSTextView *)textView
+    shouldChangeTextInRange:(NSRange)affectedCharRange
+          replacementString:(NSString *)replacementString {
+  // 给Miku充能量
+  MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
+  [mikuWebView setPlayingTime:10];
 
-- (BOOL)miku_textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
-{
-    // 给Miku充能量
-    MikuWebView *mikuWebView = [Miku sharedPlugin].mikuDragView.mikuWebView;
-    [mikuWebView setPlayingTime:10];
-    
-    return [self miku_textView:textView shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
+  return [self miku_textView:textView
+      shouldChangeTextInRange:affectedCharRange
+            replacementString:replacementString];
 }
 
 @end

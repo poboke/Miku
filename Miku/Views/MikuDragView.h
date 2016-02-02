@@ -11,6 +11,6 @@
 
 @interface MikuDragView : NSView
 
-@property (nonatomic, strong) MikuWebView* mikuWebView;
+@property(nonatomic, strong) MikuWebView *mikuWebView;
 
 @end
