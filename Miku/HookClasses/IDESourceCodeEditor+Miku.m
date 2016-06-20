@@ -15,11 +15,11 @@
 {
     [self jr_swizzleMethod:@selector(viewDidLoad)
                 withMethod:@selector(miku_viewDidLoad)
-                     error:nil];
+                     error:NULL];
     
     [self jr_swizzleMethod:@selector(textView:shouldChangeTextInRange:replacementString:)
                 withMethod:@selector(miku_textView:shouldChangeTextInRange:replacementString:)
-                     error:nil];
+                     error:NULL];
 }
 
 
